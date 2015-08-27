@@ -1,0 +1,148 @@
+/* Base Styles
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+*, *:before, *:after {
+  box-sizing:border-box;
+}
+
+// @import url(http://fonts.googleapis.com/css?family=Open+Sans);
+// @primaryFont {"open Sans"}
+
+/* html is set to 62.5% so that all the REM measurements throughout Camonote
+are based on 10px sizing. tl;dr 1.5rem = 15px Woot! */
+html {
+	font-size: 62.5%; 
+}
+
+body {
+	font-size: 1.5em; /* currently ems cause chrome bug misinterpreting rems on body element */
+	line-height: 1.6;
+	font-weight: 400;
+	font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: @grey--light; 
+	background-color: #fafafa;
+}
+
+a { 
+	color: @blue;
+
+	&:hover { opacity: 0.8; }
+}
+
+@black { 
+	color: #191919;
+}
+
+@grey--dark { 
+	color: #4e4e4e; 
+}
+
+@grey--light { 
+	color: #898989; 
+}
+
+@blue { 
+	color: #0db8be; 
+}
+
+@green { 
+	color: #36c16a; 
+}
+
+@beige { 
+	color: #fafafa; 
+}
+
+@white { 
+	color: #ffffff; 
+}
+
+.flex {
+	display: flex;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+}
+
+.flex-item {
+	flex: 1;
+	-webkit-box-flex: 1;
+	-moz-flex: 1;
+}
+
+/* Header
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.header {
+	.flex;
+	background-color: @white;
+	border-bottom: 1px solid #e3e3e3;
+
+	.header__logo {
+		.flex-item;
+	}
+
+}
+
+.nav {
+
+	.flex-item;
+
+	.nav__link {
+
+		&:hover { opacity: 0.8 }
+	}
+
+	.nav__link--searchButton {}
+
+	.nav__link--sendButton {}
+
+}
+
+.hero {
+
+	.hero__title {}
+
+	.hero__desc {}
+
+	.hero__list {
+
+		ul {
+
+			li {}
+		}
+
+		.hero__icon {}
+
+	}
+
+}
+
+
+.form {
+
+	.form__wrapper {}
+
+	.form__title {}
+
+	.form__message {}
+
+	.form__hashtag {}
+
+	.form__button {}
+
+	.form__convince {
+
+		.form__convinceLink {}
+	}
+
+}
+
+
+
+
+
+
+
+
