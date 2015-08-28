@@ -3,6 +3,9 @@
 
 @import "normalize.less";
 @import "skeleton.less";
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic);
+
+
 
 *, *:before, *:after {
   box-sizing:border-box;
@@ -15,13 +18,14 @@
 are based on 10px sizing. tl;dr 1.5rem = 15px Woot! */
 html {
 	font-size: 62.5%; 
+	height: 100%;
 }
 
 body {
 	font-size: 1.5em; /* currently ems cause chrome bug misinterpreting rems on body element */
 	line-height: 1.6;
 	font-weight: 400;
-	font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-family: "Open Sans", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	color: @greyLight; 
 	background-color: #fafafa;
 }
@@ -60,6 +64,15 @@ a {
 	-moz-flex: 1;
 }
 
+.body {
+    min-height: 100%;
+    position: relative;
+}
+
+.site-wrapper {
+    padding-bottom: 16.5rem;
+}
+
 /* Header
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
@@ -67,18 +80,33 @@ a {
 	.flex;
 	background-color: @white;
 	border-bottom: 1px solid #e3e3e3;
+	padding: 2.5rem;
 
 	.header__logo {
 		.flex-item;
+		display: inline-block;
+    	float: left;
 	}
 
 }
 
 .nav {
+	display: block;
+	font-size: 1.4rem;
 
 	.flex-item;
+	display: inline-block;
+	float: right;
 
 	.nav__link {
+
+		display: inline;
+		margin-left: 1.5rem;
+
+		a {
+			color: @greyLight;
+			text-decoration: none;
+		}
 
 		&:hover { opacity: 0.8 }
 	}
@@ -87,6 +115,10 @@ a {
 
 	.nav__link--sendButton {}
 
+}
+
+.main {
+    padding: 7.5rem 0;
 }
 
 .hero {
@@ -132,6 +164,26 @@ a {
 
 
 
+.footer {
 
+	position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+	background-color: @white;
+    padding: 5.0rem 0;
+    text-align: center;
+
+    .footer_socialIcons img:last-child {
+    	margin-left: 0.5rem;
+    }
+
+    .footer__copyright {
+    	font-weight: 300;
+    	padding: 1.0rem 0 0 0 ;
+
+    }
+}
 
 
