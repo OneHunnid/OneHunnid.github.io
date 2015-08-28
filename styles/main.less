@@ -49,6 +49,8 @@ a {
 	&:hover { opacity: 0.8; }
 }
 
+h1, h2, h3, h4, h5, h6 { color: @black; }
+
 input {    
 	height: 3.8rem;
     padding: 0.6rem 1.0rem;
@@ -151,19 +153,19 @@ input {
 	}
 }
 
-/* Hero Section
+/* Intro Homepage Section
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-.hero {
+.intro {
 
-	.hero__title {
+	.intro__title {
 		font-weight: 300;
 	    font-size: 3.6rem;
 	    letter-spacing: 0.1rem;
 	    color: @greyDark;
 	}
 
-	.hero__desc {
+	.intro__desc {
 		font-size: 1.6rem;
 	    padding: 1.0rem 0;
 	    color: @greyDark;
@@ -171,7 +173,7 @@ input {
 
 }
 
-.hero__list {
+.intro__list {
 
 	ul {
 
@@ -186,7 +188,7 @@ input {
 		}
 	}
 
-	.hero__icon {
+	.intro__icon {
 	    margin-right: 20px;
 	}
 
@@ -256,6 +258,39 @@ input {
 	    color: #fff;
 	    opacity: 0.9;
     }
+}
+
+/* Hero Section
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.hero {
+	margin-bottom: 7.5rem;
+	color: @black;
+    font-weight: 300;
+    text-align: center;
+
+	.hero__title {
+	    font-size: 3.6rem;
+	    letter-spacing: 1px;
+	}
+
+	.hero__desc {
+		font-size: 1.6rem;
+	    max-width: 600px;
+	    margin: 0 auto;
+	}
+
+}
+
+.learn {
+
+	.learn__title {
+		font-weight: 600;
+	    font-size: 1.8rem;
+	    color: @black;
+	    padding-bottom: .5rem;
+	}
+
 }
 
 /* Footer
