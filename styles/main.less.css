@@ -966,6 +966,26 @@ input {
   color: #0d8be4;
   opacity: 0.8;
 }
+.nav .link--searchButton a {
+  background-color: #36c16a;
+  color: #ffffff;
+  padding: 0.7rem 1.0rem;
+  border-radius: 4px;
+}
+.nav .link--searchButton a:hover {
+  opacity: 0.8;
+  color: #ffffff;
+}
+.nav .link--sendButton a {
+  background-color: #0d8be4;
+  color: #ffffff;
+  padding: 0.7rem 1.0rem;
+  border-radius: 4px;
+}
+.nav .link--sendButton a:hover {
+  opacity: 0.8;
+  color: #ffffff;
+}
 /* Hero Section
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .hero .hero__title {
@@ -1048,7 +1068,7 @@ input {
   right: 0;
   background-color: #ffffff;
   border-top: 1px solid #e3e3e3;
-  padding: 5.0rem 0;
+  padding: 3.5rem 0;
   text-align: center;
 }
 .footer .footer_socialIcons img:last-child {
