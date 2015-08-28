@@ -125,10 +125,30 @@ input {
 		}
 	}
 
-	.nav__link--searchButton {}
+}
 
-	.nav__link--sendButton {}
+.nav .link--searchButton a {
+    background-color: @green;
+    color: @white;
+    padding: 0.7rem 1.0rem;
+    border-radius: 4px;
 
+    &:hover { 
+		opacity: 0.8;
+		color: @white;
+	}
+}
+
+.nav .link--sendButton a {
+    background-color: @blue;
+    color: @white;
+    padding: 0.7rem 1.0rem;
+    border-radius: 4px;
+
+    &:hover { 
+		opacity: 0.8;
+		color: @white;
+	}
 }
 
 /* Hero Section
@@ -250,7 +270,7 @@ input {
 
 	background-color: @white;
 	border-top: 1px solid @greyLight;
-    padding: 5.0rem 0;
+    padding: 3.5rem 0;
     text-align: center;
 
     .footer_socialIcons img:last-child {
