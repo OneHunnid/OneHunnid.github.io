@@ -1,0 +1,63 @@
+/* Base Styles
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+/* html is set to 62.5% so that all the REM measurements throughout Camonote
+are based on 10px sizing. tl;dr 1.5rem = 15px Woot! */
+html {
+  font-size: 62.5%;
+}
+body {
+  font-size: 1.5em;
+  /* currently ems cause chrome bug misinterpreting rems on body element */
+  line-height: 1.6;
+  font-weight: 400;
+  font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #898989;
+  background-color: #fafafa;
+}
+a {
+  color: #0db8be;
+}
+a:hover {
+  opacity: 0.8;
+}
+.flex {
+  display: flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+}
+.flex-item {
+  flex: 1;
+  -webkit-box-flex: 1;
+  -moz-flex: 1;
+}
+/* Header
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.header {
+  display: flex;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e3e3e3;
+}
+.header .header__logo {
+  flex: 1;
+  -webkit-box-flex: 1;
+  -moz-flex: 1;
+}
+.nav {
+  flex: 1;
+  -webkit-box-flex: 1;
+  -moz-flex: 1;
+}
+.nav .nav__link:hover {
+  opacity: 0.8;
+}
