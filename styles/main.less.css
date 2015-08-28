@@ -966,6 +966,8 @@ input {
   color: #0d8be4;
   opacity: 0.8;
 }
+/* Hero Section
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 .hero .hero__title {
   font-weight: 300;
   font-size: 3.6rem;
@@ -989,6 +991,8 @@ input {
 .hero__list .hero__icon {
   margin-right: 20px;
 }
+/* Note Form
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 .form .form__wrapper {
   background-color: #ffffff;
   padding: 1.0rem;
@@ -1018,6 +1022,8 @@ input {
   border-bottom: solid 1px #e4e4e4;
   padding-bottom: 2px;
 }
+/* Buttons
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 .button--submit {
   background-color: #0d8be4;
   color: #ffffff;
@@ -1033,6 +1039,8 @@ input {
   color: #fff;
   opacity: 0.9;
 }
+/* Footer
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 .footer {
   position: absolute;
   bottom: 0;
@@ -1050,3 +1058,5 @@ input {
   font-weight: 300;
   padding: 1.0rem 0 0 0 ;
 }
+/* Mobile Styling
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
