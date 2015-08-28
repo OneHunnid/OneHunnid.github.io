@@ -1,6 +1,9 @@
 /* Base Styles
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
+@import "normalize.less";
+@import "skeleton.less";
+
 *, *:before, *:after {
   box-sizing:border-box;
 }
@@ -19,7 +22,7 @@ body {
 	line-height: 1.6;
 	font-weight: 400;
 	font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-	color: @grey--light; 
+	color: @greyLight; 
 	background-color: #fafafa;
 }
 
@@ -29,33 +32,19 @@ a {
 	&:hover { opacity: 0.8; }
 }
 
-@black { 
-	color: #191919;
-}
+@black: #191919;
 
-@grey--dark { 
-	color: #4e4e4e; 
-}
+@greyDark: #4e4e4e;
 
-@grey--light { 
-	color: #898989; 
-}
+@greyLight: #898989; 
 
-@blue { 
-	color: #0db8be; 
-}
+@blue: #0db8be; 
 
-@green { 
-	color: #36c16a; 
-}
+@green: #36c16a;
 
-@beige { 
-	color: #fafafa; 
-}
+@beige: #fafafa; 
 
-@white { 
-	color: #ffffff; 
-}
+@white: #ffffff; 
 
 .flex {
 	display: flex;
