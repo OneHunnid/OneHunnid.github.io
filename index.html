@@ -8,66 +8,70 @@
 
 	<link rel="stylesheet" type="text/css" href="styles/main.less.css">
 </head>
-<body>
+<body class="body">
 
-<!-- Header -->
-	<header class="header">
-		<div class="container">
+<!-- Site Wrapper	 -->
+	<div class="site-wrapper">
 
-			<div class="header__logo flex-item"><img src="assets/camonote_logo.png"></div>
+	<!-- Header -->
+		<header class="header">
+			<div class="container">
 
-			<div class="nav flex-item">
-				<div class="nav__link"><a href="#">Learn More</a></div>
-				<div class="nav__link"><a href="#">Search</a></div>
-				<div class="nav__link"><a href="#">Send Note</a></div>
-			</div>
+				<div class="header__logo flex-item"><img src="assets/camonote_logo.png"></div>
 
-		</div>
-	</header>
-
-<!-- Main Content -->
-	<main class="main">
-		<div class="container">	
-			<div class="row">
-
-			<!-- Main Info -->
-				<section class="six columns hero">
-					<div class="hero__title">Anonymously send notes that delete in 24 hours</div>
-					<div class="hero__desc">All notes are publicly available to read by searching for them with their hashtag. Enjoy anonymous conversations with friends, out in the open.</div>
-					<div class="hero__list">
-						<ul>
-							<li><span class="hero__icon"><img src="assets/icon_person.png"></span>All Notes Are Anonymous</li>
-							<li><span class="hero__icon"><img src="assets/icon_shield.png"></span>SSL Encrypted Connection</li>
-							<li><span class="hero__icon"><img src="assets/icon_opensource.png"></span>Open Sourced Code</li>
-						</ul>	
-					</div>
-				</section>
-
-			<!-- Note Form -->
-				<section class="six columns form">
-					<div class="form__wrapper">
-						<div class="form__title">Leave a Note</div>
-						<textarea class="form__message" placeholder="Write your message here..."></textarea>
-						<input class="form__hashtag" placeholder="#Hashtag"></input>
-						<div class="form__button">Send Note</div>
-						<div class="form__convince">Still not convinced? <a href="#" class="form__convinceLink">Learn More</a></div>
-					</div>
-				</section>
+				<div class="nav flex-item">
+					<div class="nav__link"><a href="#">Learn More</a></div>
+					<div class="nav__link"><a href="#">Search</a></div>
+					<div class="nav__link"><a href="#">Send Note</a></div>
+				</div>
 
 			</div>
-		</div>
-	</main>
+		</header> <!-- End Header -->
 
-<!-- Footer -->
-	<footer>
-		<div class="container">
-			<div class="footer__copyright"></div>
-			<div class="footer_socialIcons">
-				<img src="assets/icon_twitter.png">
-				<img src="assets/icon_github.png">
+	<!-- Main Content -->
+		<main class="main">
+			<div class="container">	
+				<div class="row">
+
+				<!-- Main Info -->
+					<section class="six columns hero">
+						<div class="hero__title">Anonymously send notes that delete in 24 hours</div>
+						<div class="hero__desc">All notes are publicly available to read by searching for them with their hashtag. Enjoy anonymous conversations with friends, out in the open.</div>
+						<div class="hero__list">
+							<ul>
+								<li><span class="hero__icon"><img src="assets/icon_person.png"></span>All Notes Are Anonymous</li>
+								<li><span class="hero__icon"><img src="assets/icon_shield.png"></span>SSL Encrypted Connection</li>
+								<li><span class="hero__icon"><img src="assets/icon_opensource.png"></span>Open Sourced Code</li>
+							</ul>	
+						</div>
+					</section> <!-- End Main Info -->
+
+				<!-- Note Form -->
+					<section class="six columns form">
+						<div class="form__wrapper">
+							<div class="form__title">Leave a Note</div>
+							<textarea class="form__message" placeholder="Write your message here..."></textarea>
+							<input class="form__hashtag" placeholder="#Hashtag"></input>
+							<div class="form__button">Send Note</div>
+							<div class="form__convince">Still not convinced? <a href="#" class="form__convinceLink">Learn More</a></div>
+						</div>
+					</section> <!-- End Note Form -->
+
+				</div>
 			</div>
-		</div>
-	</footer>
+		</main> <!-- End Main Content -->
 
+	<!-- Footer -->
+		<footer class="footer">
+			<div class="container">
+				<div class="footer_socialIcons">
+					<img src="assets/icon_twitter.png">
+					<img src="assets/icon_github.png">
+				</div>
+				<div class="footer__copyright">Built Because Anonymity Matters</div>
+			</div>
+		</footer><!-- End Footer -->
+
+	</div> <!-- End Site-Wrapper -->
 </body>
 </html>
