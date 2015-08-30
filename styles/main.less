@@ -204,6 +204,9 @@ input {
 	    padding: 1.0rem;
 	    border-radius: 0.4rem;
 	    box-shadow: 0px 1px 2px #bababa;
+
+	    animation: fadeInUp 1.0s ease-in-out;
+		-webkit-animation: fadeInUp .75s ease-in-out;
 	}
 
 	.form__title {
@@ -238,6 +241,39 @@ input {
 		}
 	}
 
+}
+
+@-webkit-keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 10%, 0);
+    transform: translate3d(0, 10%, 0);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, 10%, 0);
+    transform: translate3d(0, 10%, 0);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+.fadeInUp {
+  -webkit-animation-name: fadeInUp;
+  animation-name: fadeInUp;
 }
 
 /* Buttons
