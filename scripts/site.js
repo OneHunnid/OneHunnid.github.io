@@ -2,6 +2,31 @@
 // Pop-Up form when Send Note button is clicked
 
 
+
+/******** HEADER SEARCH FIELD
+
+Note: Hashtags are case sensitive 
+
+- User searches hashtag in search field 
+- Pass search query to database
+- Return results on Search Page
+
+- If no hashtags are valid, return "No Notes Available" message
+
+Validation Rules
+
+- field not empty
+- no pasting text
+- not longer than ___ characters
+- no spaces allowed
+- no invalid characters (only numbers and letter)
+- automatically add # when user focuses on search field
+- convert to plain text (no code/links allowed)
+
+*/
+
+
+
 /******** FORM
 
 - Validate when Submit button is clicked
@@ -18,6 +43,8 @@ If Valid
 
 */
 
+
+
 /******** FORM MESSAGE
 
 Validation rules
@@ -33,8 +60,9 @@ If invalid
 
 - Return error message below textarea field in red
 
-
 /*
+
+
 
 /******** FORM HASHTAG
 
@@ -51,31 +79,5 @@ Validation rules
 If invalid
 
 - Return error message below input field in red
-
-*/
-
-/******** HEADER SEARCH FIELD
-
-Note: Hashtags are case sensitive 
-
-- User searches hashtag in search field 
-- Pass search query to database
-- Return results on Search Page
-
-- If no hashtags are valid, return "No Notes Available" message
-
-
-Validation Rules
-
-- field not empty
-- no pasting text
-- not longer than ___ characters
-- no spaces allowed
-- no invalid characters (only numbers and letter)
-- automatically add # when user focuses on search field
-- convert to plain text (no code/links allowed)
-
-
-
 
 */
