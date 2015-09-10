@@ -913,6 +913,7 @@ input {
   border: 1px solid #D1D1D1;
   border-radius: .4rem;
   box-shadow: none;
+  margin: 0;
 }
 .Flex {
   display: flex;
@@ -944,7 +945,7 @@ input {
   display: -webkit-flex;
   background-color: #ffffff;
   border-bottom: 1px solid #e3e3e3;
-  padding: 2.5rem;
+  padding: 1.5rem;
 }
 .header .header__logo {
   flex: 1;
@@ -952,6 +953,7 @@ input {
   -moz-flex: 1;
   display: inline-block;
   float: left;
+  padding-top: 8px;
 }
 .nav {
   flex: 1;
