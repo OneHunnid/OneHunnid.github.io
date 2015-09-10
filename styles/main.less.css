@@ -913,7 +913,6 @@ input {
   border: 1px solid #D1D1D1;
   border-radius: .4rem;
   box-shadow: none;
-  margin: 0;
 }
 .Flex {
   display: flex;
@@ -974,6 +973,9 @@ input {
 .nav .nav__link a:hover {
   color: #0d8be4;
   opacity: 0.8;
+}
+.nav .nav__search {
+  margin: 0;
 }
 .nav .link--searchButton a {
   background-color: #36c16a;
