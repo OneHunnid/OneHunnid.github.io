@@ -976,6 +976,14 @@ input {
 }
 .nav .nav__search {
   margin: 0;
+  background-color: #fafafa;
+  padding-left: 2.0rem;
+  border-radius: 20px;
+}
+.nav .nav__search:focus {
+  border: 1px solid #33C3F0;
+  border-radius: 20px;
+  outline: none;
 }
 .nav .link--searchButton a {
   background-color: #36c16a;
