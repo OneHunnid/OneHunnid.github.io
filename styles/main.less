@@ -39,7 +39,7 @@ body {
 	font-weight: 400;
 	font-family: "Open Sans", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
 	color: @greyMedium; 
-	background-color: #fafafa;
+	background-color: @beige;
 	letter-spacing: .5px;
 	-webkit-font-smoothing: antialiased;
 }
@@ -130,6 +130,16 @@ input {
 
 	.nav__search {
 		margin: 0;
+		background-color: @beige;
+		padding-left: 2.0rem;
+		border-radius: 20px;
+	
+		&:focus {
+			border: 1px solid #33C3F0;
+		    border-radius: 20px;
+		    outline: none;
+		}
+
 	}
 
 }
