@@ -128,45 +128,77 @@ input {
 		}
 	}
 
-	.nav__search {
-		margin: 0;
-		background-color: @beige;
-		padding-left: 2.0rem;
-		border-radius: 20px;
-	
-		&:focus {
-			border: 1px solid #33C3F0;
-		    border-radius: 20px;
-		    outline: none;
-		}
+}
 
+
+/* Search Button in Header
+-------------------------------------------------- */
+
+.search {
+	display: inline-block;
+    position: relative;
+}
+
+.search__input {
+	margin: 0;
+	background-color: @beige;
+    padding: 0 4.0rem 0 2.0rem;
+	border-radius: 20px;
+
+	&:focus {
+		border: 1px solid #33C3F0;
+	    border-radius: 20px;
+	    outline: none;
 	}
 
 }
 
-.nav .link--searchButton a {
-    background-color: @green;
-    color: @white;
-    padding: 0.7rem 1.0rem;
-    border-radius: 4px;
-
-    &:hover { 
-		opacity: 0.8;
-		color: @white;
-	}
+.search__button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px 15px 0 0;
+    cursor: pointer;
 }
 
-.nav .link--sendButton a {
+.search__icon {
+	height: 15px;
+    opacity: 0.6;
+}
+
+/* New Note Button in Header
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.newNote {
+	position: relative;
+	display: inline-block;
+
+	.newNote__icon {
+	    height: 22px;
+	    position: absolute;
+	    left: 20px;
+	    top: -3px;
+	}
+
+}
+
+.newNote__button a {
     background-color: @blue;
     color: @white;
+	text-decoration: none;
     padding: 0.7rem 1.0rem;
     border-radius: 4px;
+    padding-left: 38px;
+    font-weight: 700;
+	margin-left: 1.0rem;
 
     &:hover { 
 		opacity: 0.8;
 		color: @white;
 	}
 }
+
+
 
 /* Intro Homepage Section
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -432,7 +464,7 @@ input {
 /* Search Page
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-.search .hero {
+.searchPage .hero {
 	margin-bottom: 5rem;
 }
 
