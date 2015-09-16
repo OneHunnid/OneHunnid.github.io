@@ -20,9 +20,17 @@
 				<div class="header__logo flex-item"><a href="index.html"><img alt="Camonote Logo" src="assets/camonote_logo.png"></a></div>
 
 				<div class="nav flex-item">
-					<input class="nav__search" placeholder="search camonote">
-					<div class="nav__link link--sendButton"><a href="#openForm">Send Note</a></div>
+					<div class="search">
+						<form id="search" class="search__form">
+							<input class="search__input" placeholder="search camonote">
+							<div class="search__button"><img class="search__icon" src="assets/icon_search.png"></div>
+						</form>
+					</div>
 
+					<!-- Send Note Button -->
+					<div class="newNote">
+						<div class="newNote__button"><a href="#openForm"><span><img class="newNote__icon" src="assets/icon_pencil.png"></span>Write</a></div>
+					</div>
 					<!-- Form Modal -->
 					<section id="openForm" class="form formModal">
 						<div class="formModal__wrapper">
