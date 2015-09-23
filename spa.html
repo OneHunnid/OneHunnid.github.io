@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+
+	<title>Camonote | Publicly enjoy anonymous conversations</title>
+
+	<link rel="stylesheet" type="text/css" href="styles/main.less.css">
+</head>
+<body class="body">
+
+<!-- Site Wrapper	 -->
+	<div class="site-wrapper">
+
+	<!-- Header -->
+		<header class="header">
+			<div class="container">
+
+				<div class="header__logo flex-item"><a href="index.html"><img alt="Camonote Logo" src="assets/camonote_logo.png"></a></div>
+
+				<div class="nav flex-item">
+					<div class="search">
+						<form id="searchForm" class="search__form">
+							<input class="search__input" placeholder="search camonote">
+							<div class="search__button"><img class="search__icon" src="assets/icon_search.png"></div>
+						</form>
+					</div>
+					
+				</div>
+
+			</div>
+		</header> <!-- End Header -->
+
+	<!-- Main Content -->
+		<main class="main">
+			<div class="container" id="main-content">	
+				Hello, Wrold
+			</div>
+		</main> <!-- End Main Content -->
+
+	<!-- Templates -->
+	<script id="homeTemplate" type="underscore/template">
+		<div class="row">
+
+		<!-- Main Info -->
+			<section class="six columns intro">
+				<h2 class="intro__title"><%= title %></h2>
+				<p class="intro__desc">All notes are publicly available to read by searching for them with their hashtag. Enjoy anonymous conversations with friends, out in the open.</p>
+				<div class="intro__list">
+					<ul>
+					<% for ( var i = 0; i < list.length; ++i ) { %>
+						<li>
+							<span class="intro__icon">
+								<img alt="Person Icon" src="<%= list[ i ].icon %>">
+							</span>
+							<%= list[ i ].label %>
+						</li>
+					<% } %>
+					</ul>	
+				</div>
+			</section> <!-- End Main Info -->
+
+		<!-- Note Form -->
+			<section class="five columns form u-pull-right">
+				<div class="form__wrapper">
+					<form id="write-note">
+						<h3 class="form__title">Leave a Note</h3>
+						<textarea id="formTextareaMessage" class="form__message u-full-width" placeholder="Write your message here..." required></textarea>
+						<input id="formInputHashtag" class="form__hashtag u-full-width" type="text" placeholder="#Hashtag"/>
+						<div id="formSubmit" class="button button--submit">Send Note</div>
+						<div class="form__convince">Still not convinced? <a href="learnmore.html" class="form__convinceLink">Learn more</a></div>
+					</form>
+				</div>
+			</section> <!-- End Note Form -->
+
+		</div>
+	</script>
+
+	<!-- Footer -->
+		<footer class="footer">
+			<div class="container">
+				<div class="footer_socialIcons">
+					<img alt="Twitter Icon" src="assets/icon_twitter.png">
+					<img alt="Github Icon" src="assets/icon_github.png">
+				</div>
+				<div class="footer__copyright">Built Because Anonymity Matters</div>
+			</div>
+		</footer><!-- End Footer -->
+
+	</div> <!-- End Site-Wrapper -->
+
+	<!--  ROUTES  -->
+	<script src="scripts/director.min.js"></script>
+	<script src="scripts/routes.js"></script>
+
+	<!-- DOM -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+	<!-- UNDERSCORE -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+
+	<!-- PLUGINS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.1.2/parsley.js"></script>
+
+	<!-- VIEWS -->
+	<script src="scripts/views/home.js"></script>
+	<script src="scripts/views/learnMore.js"></script>
+
+	<!-- ROUTER DIRECTOR -->
+	<script src="scripts/app.js"></script>
+</body>
+</html>
