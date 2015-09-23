@@ -2,6 +2,38 @@
 // Pop-Up form when Send Note button is clicked
 
 
+// Form Message Input Validation
+var messageValidation = {
+	
+	isEmpty:
+	isGreaterThanNChars:
+	isNotAlphaNumeric:
+
+	return true;
+
+};
+
+// Form Hashtag Input Validation
+var hashtagValidation = {
+	
+	isEmpty:
+	isGreaterThanNChars:
+	isNotAlphaNumeric:
+	hasHashtagInFront:
+	hasSpaces:
+
+	return true;
+
+};
+
+$('#formSubmit').click(function(messageValidation, hashtagValidation) {
+	if ( messageValidation === true && hashtagValidation === true ) {
+		return true;
+	}
+
+	return false;
+
+});
 
 /******** HEADER SEARCH FIELD
 
