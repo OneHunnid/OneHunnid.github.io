@@ -66,8 +66,8 @@
 				<div class="form__wrapper">
 					<form id="write-note">
 						<h3 class="form__title">Leave a Note</h3>
-						<textarea id="formTextareaMessage" class="form__message u-full-width" placeholder="Write your message here..." required></textarea>
-						<input id="formInputHashtag" class="form__hashtag u-full-width" type="text" placeholder="#Hashtag"/>
+						<textarea id="formTextareaMessage" class="form__message u-full-width" placeholder="Write your message here..." required data-parsley-length="[1, 140]"></textarea>
+						<input id="formInputHashtag" class="form__hashtag u-full-width" type="text" placeholder="#Hashtag" required data-parsley-type="alphanum"/>
 						<div id="formSubmit" class="button button--submit">Send Note</div>
 						<div class="form__convince">Still not convinced? <a href="learnmore.html" class="form__convinceLink">Learn more</a></div>
 					</form>
