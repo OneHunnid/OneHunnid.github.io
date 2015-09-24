@@ -35,7 +35,7 @@
 	<!-- Main Content -->
 		<main class="main">
 			<div class="container" id="main-content">	
-				Hello, Wrold
+				Nothing to see here, move along.
 			</div>
 		</main> <!-- End Main Content -->
 
@@ -69,13 +69,47 @@
 						<textarea id="formTextareaMessage" class="form__message u-full-width" placeholder="Write your message here..." required data-parsley-length="[1, 140]" data-parsley-required-message="Message is required" data-parsley-length-message="Over the 140 character limit."></textarea>
 						<input id="formInputHashtag" class="form__hashtag u-full-width" type="text" placeholder="#Hashtag" required data-parsley-type="alphanum" data-parsley-length="[1, 140]" data-parsley-required-message="Hashtag is required." data-parsley-type-message="Alphanumeric characters only."/>
 						<div id="formSubmit" class="button button--submit">Send Note</div>
-						<div class="form__convince">Still not convinced? <a href="learnmore.html" class="form__convinceLink">Learn more</a></div>
+						<div class="form__convince">Still not convinced? <a href="#learnMore" class="form__convinceLink">Learn more</a></div>
 					</form>
 				</div>
 			</section> <!-- End Note Form -->
 
 		</div>
-	</script>
+	</script> <!-- End of Homepage-->
+
+	<script id="learnMoreTemplate" type="underscore/template">
+
+		<section class="learnMore">
+			<!-- Hero -->
+				<div class="hero">
+					<h2 class="hero__title"><%= title %></h2>
+					<div class="hero__desc"><%= desc %></div>
+				</div>
+
+				<div class="row learn">
+					<div class="six columns">
+						<div class="learn__title">Stay Safe & Anonymous</div>
+						<p>Camonote easily lets you hide your identity so that you can have public conversations privately. Simply create a note, categorize it with a hashtag and submit. You can search for notes using hashtags and join in on conversations.</p>
+					</div>
+					<div class="six columns">
+						<div class="learn__title">100% Transparent</div>
+						<p>We built our application on the foundation of trust and transparency. We do not track, collect, or sell any user data sessions. We only save the message and hashtag when notes are submitted. All notes are deleted after 24 hours. </p>
+					</div>
+				</div>
+
+				<div class="row learn">
+					<div class="six columns">
+						<div class="learn__title">Open Source</div>
+						<p>Camonote has nothing to hide, which is why we have released our codebase as open source.  Feel free to take a look and see how we&apos;ve built our application.</p>
+					</div>
+					<div class="six columns">
+						<div class="learn__title">SSL & Encryption</div>
+						<p>Camonote utilizes strong encryption to help keep you anonymous and our data safe. Our application is deployed on a secured Digital Oceans server with SSL and a secure Firebase server.</p>
+					</div>
+				</div>
+
+		</section>
+	</script> <!-- End Learn More -->
 
 	<!-- Footer -->
 		<footer class="footer">
