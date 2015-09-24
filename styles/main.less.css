@@ -1126,6 +1126,9 @@ input {
 .parsley-error {
   border-color: #E44343;
 }
+.parsley-success {
+  border: 1px solid #D1D1D1;
+}
 /* Buttons
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .button--submit {
@@ -1133,7 +1136,8 @@ input {
   color: #ffffff;
   border: solid 1px #0879CA;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 700;
+  letter-spacing: .5px;
   height: 5.0rem;
   padding: 5px 0px;
   text-transform: none;
