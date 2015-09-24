@@ -1113,6 +1113,16 @@ input {
   -webkit-animation-name: fadeInUp;
   animation-name: fadeInUp;
 }
+.parsley-required,
+.parsley-length,
+.parsley-type {
+  color: #E44343;
+  text-align: center;
+  list-style-type: none;
+}
+.parsley-error {
+  border-color: #E44343;
+}
 /* Buttons
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .button--submit {
