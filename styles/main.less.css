@@ -1001,6 +1001,9 @@ input {
   height: 13px;
   opacity: 0.6;
 }
+.search__form ul {
+  display: none;
+}
 /* New Note Button in Header
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .newNote {
