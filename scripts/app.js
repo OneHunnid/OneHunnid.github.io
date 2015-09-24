@@ -11,7 +11,7 @@
 	};
 
 	Routes.register('home', Views.home );
-	Routes.register('learnmore', Views.learnMore );
+	Routes.register('learnMore', Views.learnMore );
 
 	Routes.init('home');
 	
