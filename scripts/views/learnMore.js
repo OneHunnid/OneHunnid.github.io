@@ -6,8 +6,11 @@ var LearnMore = (function() {
 	},
 	template = $('#learnMoreTemplate').html(),
 	compiled = _.template( template );
-
+	
+	// KICKSTART VIEW
 	function initLearnMore() {
+	
+	// load main-content
 		$('#main-content').html(compiled(learnMoreData));
 	}
 	return {
