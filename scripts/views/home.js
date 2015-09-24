@@ -33,15 +33,14 @@ var Home = (function() {
 
 	        form.parsley().validate();
 
-	        console.log( $('#formTextareaMessage').parsley().isValid() );
-
-	        console.log( form.parsley() )
-
 	        if ( form.parsley().isValid() ) {
 	            console.log('hello')      
 	        }
+	        else {
+	        	$('textarea').css('border', '1px solid red')
+	        }
 
-	        console.log('hello2')
+	        // return function(); //display error message & highlight fields in red
 	    });
 
 	}
