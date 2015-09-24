@@ -46,7 +46,7 @@
 		<!-- Main Info -->
 			<section class="six columns intro">
 				<h2 class="intro__title"><%= title %></h2>
-				<p class="intro__desc">All notes are publicly available to read by searching for them with their hashtag. Enjoy anonymous conversations with friends, out in the open.</p>
+				<p class="intro__desc"><%= desc%></p>
 				<div class="intro__list">
 					<ul>
 					<% for ( var i = 0; i < list.length; ++i ) { %>
@@ -66,8 +66,8 @@
 				<div class="form__wrapper">
 					<form id="write-note">
 						<h3 class="form__title">Leave a Note</h3>
-						<textarea id="formTextareaMessage" class="form__message u-full-width" placeholder="Write your message here..." required data-parsley-length="[1, 140]"></textarea>
-						<input id="formInputHashtag" class="form__hashtag u-full-width" type="text" placeholder="#Hashtag" required data-parsley-type="alphanum"/>
+						<textarea id="formTextareaMessage" class="form__message u-full-width" placeholder="Write your message here..." required data-parsley-length="[1, 140]" data-parsley-required-message="Message is required" data-parsley-length-message="Over the 140 character limit."></textarea>
+						<input id="formInputHashtag" class="form__hashtag u-full-width" type="text" placeholder="#Hashtag" required data-parsley-type="alphanum" data-parsley-length="[1, 140]" data-parsley-required-message="Hashtag is required." data-parsley-type-message="Alphanumeric characters only."/>
 						<div id="formSubmit" class="button button--submit">Send Note</div>
 						<div class="form__convince">Still not convinced? <a href="learnmore.html" class="form__convinceLink">Learn more</a></div>
 					</form>
