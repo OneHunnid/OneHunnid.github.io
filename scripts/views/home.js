@@ -34,13 +34,34 @@ var Home = (function() {
 	        form.parsley().validate();
 
 	        if ( form.parsley().isValid() ) {
-	            console.log('hello')      
+	            console.log('Note is Valid')      
 	        }
 	        else {
 	        	$('#write-note').find('textarea, input').css('border', '1px solid #E44343') // display error message & highlight fields in red
 	        }
 
 	    });
+
+	}
+
+	function initSearchSubmission() {
+
+		var search = $('#search-notes');
+		search.parsley();
+
+		$('#searchSubmit').on('click', function(e) {
+			e.preventDefault();
+
+			search.parsley().validate();
+
+			if ( search.parsley().isValid() ) {
+				console.log('Search is Valid');
+			}
+			else {
+				$('#search-notes').find('.search__form, input:focus').css('border', '1px solid #E44343')
+			}
+
+		});
 
 	}
 
@@ -52,6 +73,7 @@ var Home = (function() {
 
 		// bind events
 		initFormSubmission();
+		initSearchSubmission();
 
 		// load firebase..
 
