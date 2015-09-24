@@ -1,7 +1,7 @@
 var Home = (function() {
 
 	var homeData = {
-		title: 'Hello, Wrold Anonymously send notes that delete in 24 hours.',
+		title: 'Anonymously send notes that delete in 24 hours.',
 		desc: 'All notes are publicly available to read by searching for them with their hashtag. Enjoy anonymous conversations with friends, out in the open.',
 		list: [
 			{
@@ -37,10 +37,9 @@ var Home = (function() {
 	            console.log('hello')      
 	        }
 	        else {
-	        	$('textarea').css('border', '1px solid red')
+	        	$('#write-note').find('textarea, input').css('border', '1px solid #E44343') // display error message & highlight fields in red
 	        }
 
-	        // return function(); //display error message & highlight fields in red
 	    });
 
 	}
