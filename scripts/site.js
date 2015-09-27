@@ -1,3 +1,32 @@
+// $.getScript('https://cdn.firebase.com/js/client/2.2.9/firebase.js', function() {
+//     // put your firebase code here
+    
+// 	var myFirebaseRef = new Firebase("https://radiant-torch-2861.firebaseio.com/");
+	    
+// 	    console.log('test 1');    
+
+//     var note = {
+//         message : "Yeah! this is a message",
+//         hashtag : "testing again, derp",
+//         timestamp: 0345
+//     }
+        
+    // $('#submitButton').on('click', function(){myFirebaseRef.child('notes').push(note)
+        
+//     });
+    
+//     console.log('test 2');
+    
+//     // setInterval(function() {
+//     //     myFirebaseRef.child('age').set( Math.floor( Math.random()*100 ) );
+//     // }, 2500);
+    
+
+// });
+
+
+
+
 // Connect Firebase
 // Pop-Up form when Send Note button is clicked
 
