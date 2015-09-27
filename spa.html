@@ -39,26 +39,45 @@
 			</div>
 		</main> <!-- End Main Content -->
 
+	<!-- Partials -->
+	<script id="partial-main-info" type="underscore/template">
+		<h2 class="intro__title"><%= title %></h2>
+		<p class="intro__desc"><%= desc%></p>
+		<div class="intro__list">
+			<ul>
+			<% for ( var i = 0; i < list.length; ++i ) { %>
+				<li>
+					<span class="intro__icon">
+						<img alt="Person Icon" src="<%= list[ i ].icon %>">
+					</span>
+					<%= list[ i ].label %>
+				</li>
+			<% } %>
+			</ul>	
+		</div>
+	</script>
+
+	<script id="partial-hash-search" type="underscore/template">
+		<div class="hero">
+			<h2 class="hero__title">Search Reults for <span class="searchResults__hashtag">#<%= hash %></span></h2>
+		</div>
+		<div class="searchResults">
+			<% for ( var hashItem = 0; hashItem < val.length; ++hashItem ) { %>
+				<div class="searchResult__card">
+					<div class="searchResult__time"><%= moment( moment(val[ hashItem ].timestamp).add(24, 'hours') ).from( moment(val[ hashItem ].timestamp) ) %></div>
+					<div class="searchResult__text"><%= val[ hashItem ].message %></div>
+				</div>
+			<% } %>
+		</div>
+	</script>
+
 	<!-- Templates -->
 	<script id="homeTemplate" type="underscore/template">
 		<div class="row">
 
 		<!-- Main Info -->
-			<section class="six columns intro">
-				<h2 class="intro__title"><%= title %></h2>
-				<p class="intro__desc"><%= desc%></p>
-				<div class="intro__list">
-					<ul>
-					<% for ( var i = 0; i < list.length; ++i ) { %>
-						<li>
-							<span class="intro__icon">
-								<img alt="Person Icon" src="<%= list[ i ].icon %>">
-							</span>
-							<%= list[ i ].label %>
-						</li>
-					<% } %>
-					</ul>	
-				</div>
+			<section class="six columns intro js-home-left-col">
+				
 			</section> <!-- End Main Info -->
 
 		<!-- Note Form -->
@@ -111,6 +130,29 @@
 		</section>
 	</script> <!-- End Learn More -->
 
+	<script id="searchTemplate" type="underscore/template">
+
+		<section class="learnMore">
+			<!-- Hero -->
+				<div class="hero">
+					<h2 class="hero__title"><%= title %></h2>
+					<div class="hero__desc">this is the search page</div>
+				</div>
+
+				<div class="row learn">
+					<div class="six columns">
+						<div class="learn__title">Open Source</div>
+						<p>Camonote has nothing to hide, which is why we have released our codebase as open source.  Feel free to take a look and see how we&apos;ve built our application.</p>
+					</div>
+					<div class="six columns">
+						<div class="learn__title">SSL & Encryption</div>
+						<p>Camonote utilizes strong encryption to help keep you anonymous and our data safe. Our application is deployed on a secured Digital Oceans server with SSL and a secure Firebase server.</p>
+					</div>
+				</div>
+
+		</section>
+	</script> <!-- End Search -->
+
 	<!-- Footer -->
 		<footer class="footer">
 			<div class="container">
@@ -124,6 +166,9 @@
 
 	</div> <!-- End Site-Wrapper -->
 
+	<!-- FIREBASE -->
+	<script src='https://cdn.firebase.com/js/client/2.2.9/firebase.js'></script>
+
 	<!--  ROUTES  -->
 	<script src="scripts/director.min.js"></script>
 	<script src="scripts/routes.js"></script>
@@ -134,12 +179,16 @@
 	<!-- UNDERSCORE -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 
+	<!-- UTILS -->
+	<script src="scripts/moment.js"></script>
+
 	<!-- PLUGINS -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.1.2/parsley.js"></script>
 
 	<!-- VIEWS -->
 	<script src="scripts/views/home.js"></script>
 	<script src="scripts/views/learnMore.js"></script>
+	<script src="scripts/views/search.js"></script>
 
 	<!-- ROUTER DIRECTOR -->
 	<script src="scripts/app.js"></script>
