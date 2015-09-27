@@ -25,22 +25,47 @@ var Home = (function() {
 
 	function initFormSubmission() {
 
+	// Init Firebase
+	$.getScript('https://cdn.firebase.com/js/client/2.2.9/firebase.js', function() {
+
+		// Connect Firebase
+		var myFirebaseRef = new Firebase("https://radiant-torch-2861.firebaseio.com/");
+
 		var form = $('#write-note');
+		
 		form.parsley();
 
+		// Submit Note Form
 		$('#formSubmit').on('click', function(e) { 
 	        e.preventDefault();
 
 	        form.parsley().validate();
 
+	        var formObj = {
+	        	 message: $('#formTextareaMessage').val(),
+	        	 hashtag: $('#formInputHashtag').val(),
+	        	 timestamp: Firebase.ServerValue.TIMESTAMP
+	        };
+
+	        // If note is valid, submit to database and reset fields
 	        if ( form.parsley().isValid() ) {
-	            console.log('Note is Valid')      
+	            
+	            // Submit note to database
+	            myFirebaseRef.child('notes').push({"message": formObj.message , "hashtag": formObj.hashtag});
+
+				// Reset form fields after	
+				$("#formTextareaMessage").val("");
+				$("#formInputHashtag").val("");
+
 	        }
+	        // If invalid, display errors
 	        else {
-	        	$('#write-note').find('textarea, input').css('border', '1px solid #E44343') // display error message & highlight fields in red
+	        	// $('#write-note').find('textarea, input').css('border', '1px solid #E44343') // display error message & highlight fields in red
 	        }
 
 	    });
+
+    });
 
 	}
 
