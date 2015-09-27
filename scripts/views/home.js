@@ -1,5 +1,7 @@
 var Home = (function() {
 
+	var myFirebaseRef = new Firebase("https://radiant-torch-2861.firebaseio.com/");
+
 	var homeData = {
 		title: 'Anonymously send notes that delete in 24 hours.',
 		desc: 'All notes are publicly available to read by searching for them with their hashtag. Enjoy anonymous conversations with friends, out in the open.',
@@ -21,15 +23,19 @@ var Home = (function() {
 	template = $('#homeTemplate').html(),
 	compiled = _.template( template );
 
+	// partials
+	var infoPartial = $('#partial-main-info').html(),
+		infoPartialCompiled = _.template( infoPartial ),
+		hashPartial = $('#partial-hash-search').html(),
+		hashPartialCompiled = _.template( hashPartial );
+
 	// DOM Handlers
 
 	function initFormSubmission() {
 
 	// Init Firebase
-	$.getScript('https://cdn.firebase.com/js/client/2.2.9/firebase.js', function() {
 
 		// Connect Firebase
-		var myFirebaseRef = new Firebase("https://radiant-torch-2861.firebaseio.com/");
 
 		var form = $('#write-note');
 		
@@ -50,12 +56,15 @@ var Home = (function() {
 	        // If note is valid, submit to database and reset fields
 	        if ( form.parsley().isValid() ) {
 	            
-	            // Submit note to database
-	            myFirebaseRef.child('notes').push({"message": formObj.message , "hashtag": formObj.hashtag});
+	            // Submit notes to database
+	            myFirebaseRef.child('allNotes').push({"message": formObj.message , "hashtag": formObj.hashtag, "timestamp": formObj.timestamp});
+	            myFirebaseRef.child('hashtags/' + formObj.hashtag).push({"message": formObj.message , "hashtag": formObj.hashtag, "timestamp": formObj.timestamp});
 
 				// Reset form fields after	
 				$("#formTextareaMessage").val("");
 				$("#formInputHashtag").val("");
+
+				onVal( myFirebaseRef, formObj.hashtag, 100 );
 
 	        }
 	        // If invalid, display errors
@@ -65,8 +74,28 @@ var Home = (function() {
 
 	    });
 
-    });
+	}
 
+	function onVal( myFirebaseRef, searchVal, limVal ) {
+		myFirebaseRef.off();
+		myFirebaseRef.child('hashtags/'+searchVal).on('value', function( snapshot ) {
+			var vals = snapshot.val();
+
+			var dataAsArray = 
+				Object.keys(vals)										// turns the keys of the snapshot into an array
+				.sort(function(a,b){									// sorts the keys 
+					return ( vals[a].timestamp <= vals[b].timestamp ) ? 1 : -1;
+				})
+				.reduce(function(arr, currentItem){						// now have array of keys sorted by timestamp
+					arr.push( vals[ currentItem ] );
+					return arr;											// populate another array for each object item
+				}, []);
+
+			$('.js-home-left-col').html( hashPartialCompiled({
+				hash: searchVal,
+				val: dataAsArray
+			}) );
+		});
 	}
 
 	function initSearchSubmission() {
@@ -77,10 +106,12 @@ var Home = (function() {
 		$('#searchSubmit').on('click', function(e) {
 			e.preventDefault();
 
+			var searchVal = search.find('.search__input').val();
+
 			search.parsley().validate();
 
 			if ( search.parsley().isValid() ) {
-				console.log('Search is Valid');
+				onVal( myFirebaseRef, searchVal, 100 );
 			}
 			else {
 				$('#search-notes').find('.search__form, input:focus').css('border', '1px solid #E44343')
@@ -95,6 +126,8 @@ var Home = (function() {
 
 		// load main content
 		$('#main-content').html(compiled( homeData ));
+
+		$('.js-home-left-col').html( infoPartialCompiled(homeData));
 
 		// bind events
 		initFormSubmission();
