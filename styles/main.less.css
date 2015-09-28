@@ -1032,6 +1032,9 @@ input {
 }
 /* Intro Homepage Section
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+.main-intro {
+  max-width: 480px;
+}
 .intro .intro__title {
   font-weight: 300;
   font-size: 3.6rem;
@@ -1241,8 +1244,17 @@ input {
 }
 /* Search Page
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-.searchPage .hero {
-  margin-bottom: 5rem;
+.searchPage {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0px 1px 2px #bababa;
+  margin-bottom: 20px;
+}
+.search__title {
+  font-size: 2.4rem;
+  text-align: center;
+  margin: 0;
 }
 .searchResults__hashtag {
   color: #36C16A;
@@ -1255,6 +1267,7 @@ input {
   max-width: 540px;
   margin: 0 auto;
   min-height: 51px;
+  margin-bottom: 20px;
 }
 .searchResults .searchResult__time {
   margin-bottom: 10px;
