@@ -41,25 +41,27 @@
 
 	<!-- Partials -->
 	<script id="partial-main-info" type="underscore/template">
-		<h2 class="intro__title"><%= title %></h2>
-		<p class="intro__desc"><%= desc%></p>
-		<div class="intro__list">
-			<ul>
-			<% for ( var i = 0; i < list.length; ++i ) { %>
-				<li>
-					<span class="intro__icon">
-						<img alt="Person Icon" src="<%= list[ i ].icon %>">
-					</span>
-					<%= list[ i ].label %>
-				</li>
-			<% } %>
-			</ul>	
+		<div class="main-intro">
+			<h2 class="intro__title"><%= title %></h2>
+			<p class="intro__desc"><%= desc%></p>
+			<div class="intro__list">
+				<ul>
+				<% for ( var i = 0; i < list.length; ++i ) { %>
+					<li>
+						<span class="intro__icon">
+							<img alt="Person Icon" src="<%= list[ i ].icon %>">
+						</span>
+						<%= list[ i ].label %>
+					</li>
+				<% } %>
+				</ul>	
+			</div>
 		</div>
 	</script>
 
 	<script id="partial-hash-search" type="underscore/template">
-		<div class="hero">
-			<h2 class="hero__title">Search Results for <span class="searchResults__hashtag">#<%= hash %></span></h2>
+		<div class="searchPage">
+			<h2 class="search__title">Search Results for <span class="searchResults__hashtag">#<%= hash %></span></h2>
 		</div>
 		<div class="searchResults">
 			<% for ( var hashItem = 0; hashItem < val.length; ++hashItem ) { %>
@@ -76,7 +78,7 @@
 		<div class="row">
 
 		<!-- Main Info -->
-			<section class="six columns intro js-home-left-col">
+			<section class="seven columns js-home-left-col">
 				
 			</section> <!-- End Main Info -->
 
