@@ -92,7 +92,7 @@ var MediaDetector = (function(){
 
 		var youtubePayload = youtubeCompiled({ url: url });
 
-		return newMessage + "<br />" + youtubePayload;
+		return newMessage + "<p></p>" + youtubePayload;
 	}
 
 	function _isSoundcloud( msg, url ) {
