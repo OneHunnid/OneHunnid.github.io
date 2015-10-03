@@ -68,19 +68,13 @@
 					<div class="searchResult__card">
 						<div class="searchResult__time"><%= moment( moment(val[ hashItem ].timestamp).add(24,'hours') ).from (moment(val[hashItem].timestamp) )%>
 						</div>
-						
-
 						<% var isMedia = detectMedia( val[ hashItem ].message ); %>
 						<% if ( isMedia.isMediaFound ) { %>
-
 							<div class="searchResults__text">
 								<%= isMedia.payload %>
 							</div>
-
 						<% } else { %>
-
 							<div class="searchResults__text"><%- val[ hashItem ].message %></div>
-
 						<% } %>
 					</div>
 				<% } %>
