@@ -8,7 +8,7 @@ var Home = (function() {
 		list: [
 			{
 				icon: 'assets/icon_person.png',
-				label: 'All Notes Are Anonymous'
+				label: 'All Notes are Anonymous'
 			},
 			{
 				icon: 'assets/icon_shield.png',
@@ -20,43 +20,36 @@ var Home = (function() {
 			}
 		]
 	},
-	template = $('#homeTemplate').html(),
-	compiled = _.template( template );
+	template = $('#homepageTemplate').html(),
+	compiled = _.template(template);
 
-	// partials
+	// Partials
 	var infoPartial = $('#partial-main-info').html(),
 		infoPartialCompiled = _.template( infoPartial ),
 		hashPartial = $('#partial-hash-search').html(),
 		hashPartialCompiled = _.template( hashPartial );
 
 	// DOM Handlers
-
 	function initFormSubmission() {
-
-	// Init Firebase
-
-		// Connect Firebase
-
-		var form = $('#write-note');
 		
+		var form = $('#write-note');
 		form.parsley();
 
 		// Submit Note Form
-		$('#formSubmit').on('click', function(e) { 
-	        e.preventDefault();
+		$('#formSubmit').on('click', function(e) {
+			e.preventDefault();
+			
+			form.parsley().validate();
 
-	        form.parsley().validate();
+			var formObj = {
+				message: $('#formTextareaMessage').val(),
+				hashtag: $('#formInputHashtag').val(),
+				timestamp: Firebase.ServerValue.TIMESTAMP
+			};
 
-	        var formObj = {
-	        	 message: $('#formTextareaMessage').val(),
-	        	 hashtag: $('#formInputHashtag').val(),
-	        	 timestamp: Firebase.ServerValue.TIMESTAMP
-	        };
+			if ( form.parsley().isValid() ) {
 
-	        // If note is valid, submit to database and reset fields
-	        if ( form.parsley().isValid() ) {
-	            
-	            // Submit notes to database
+				// Submit notes to database
 	            myFirebaseRef.child('allNotes').push({"message": formObj.message , "hashtag": formObj.hashtag, "timestamp": formObj.timestamp});
 	            myFirebaseRef.child('hashtags/' + formObj.hashtag).push({"message": formObj.message , "hashtag": formObj.hashtag, "timestamp": formObj.timestamp});
 
@@ -67,12 +60,12 @@ var Home = (function() {
 				onVal( myFirebaseRef, formObj.hashtag, 100 );
 
 	        }
-	        // If invalid, display errors
+	        // If invalid...
 	        else {
-	        	// $('#write-note').find('textarea, input').css('border', '1px solid #E44343') // display error message & highlight fields in red
+	        	
 	        }
 
-	    });
+		});
 
 	}
 
@@ -98,6 +91,7 @@ var Home = (function() {
 		});
 	}
 
+
 	function initSearchSubmission() {
 
 		var search = $('#search-notes');
@@ -112,9 +106,14 @@ var Home = (function() {
 
 			if ( search.parsley().isValid() ) {
 				onVal( myFirebaseRef, searchVal, 100 );
+
+				// Reset form field after	
+				$("#searchSubmit").val("");
 			}
+			
+			// If invalid...
 			else {
-				$('#search-notes').find('.search__form, input:focus').css('border', '1px solid #E44343')
+				
 			}
 
 		});
@@ -126,19 +125,15 @@ var Home = (function() {
 
 		// load main content
 		$('#main-content').html(compiled( homeData ));
+		
+		$('.js-home-left-col').html( infoPartialCompiled(  homeData ));
 
-		$('.js-home-left-col').html( infoPartialCompiled(homeData));
-
-		// bind events
+		// Bind events
 		initFormSubmission();
 		initSearchSubmission();
-
-		// load firebase..
-
 	}
 	return {
 		init: initHome
 	};
 
 })();
-

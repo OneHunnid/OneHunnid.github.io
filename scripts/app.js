@@ -1,4 +1,4 @@
-(function(){ 	// protect the lemmings!
+(function(){
 
 	var Views = {};
 
@@ -11,7 +11,6 @@
 	};
 
 	Views.search = function search() {
-		console.log(Search);
 		Search.init();
 	};
 

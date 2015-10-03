@@ -5,12 +5,12 @@ var Search = (function() {
 	},
 	template = $('#searchTemplate').html(),
 	compiled = _.template( template );
-	
-	// KICKSTART VIEW
+
+	// Kickstart view
 	function initsearch() {
-	
-	// load main-content
-		$('#main-content').html(compiled(searchData));
+
+		// Load main content
+		$('#main-content').html(compiled( searchData ));
 	}
 
 	return {
