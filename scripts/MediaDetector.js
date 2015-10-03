@@ -1,0 +1,99 @@
+var MediaDetector = (function(){
+
+	var supported = [ 'youtube', 'soundcloud', "imgur" ];
+
+
+
+	function detectMedia( msg ) {
+		var matches = msg.match(/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/);
+
+		if ( matches === null ) {
+			return {
+				isMediaFound: false
+			};
+		}
+
+		// if we are here, media HAS been found
+		var url = matches[ 0 ].replace(/\"/g, '');
+		var media = "generic", payloadTypeFunction;
+
+		for( var i = 0; i < supported.length; ++i ) {
+			var currentMediaToCheck = supported[ i ];
+			var hasFound = url.indexOf( currentMediaToCheck ) !== -1;
+			if ( hasFound ) {
+				media = currentMediaToCheck;
+				break;
+			}
+		}
+
+		switch ( media ) {
+			case "generic":
+				payloadTypeFunction = _isGenericURL;
+				break;
+			case "youtube":
+				payloadTypeFunction = _isYoutube;
+				break;
+		}
+
+
+		return {
+			isMediaFound: true,
+			payload: payloadTypeFunction( msg, url )
+		}
+	};
+
+	function _getArgs( url ) {
+		var urlBits = url.split('?');
+		if ( urlBits.length <= 1 ) {
+			// no args, return empty
+			return {};
+		}
+
+		var args = urlBits.pop();
+		var argBits = args.split('&');
+		if ( argBits.length === 0 ) {
+			return {};
+		}
+
+		return argBits.reduce(function( argsObj, arg ){
+			var curr = arg.split('=');
+
+			argsObj[ curr[ 0 ] ] = curr[ 1 ];
+
+			return argsObj;
+		}, {});
+	}
+
+	function _isGenericURL( msg, url ) {
+		return '<a href="'+url+'" target="_blank">'+url+'</a>';
+	}
+
+	function _isYoutube( msg, url ) {
+
+		var args = _getArgs( url );
+
+		var msgBits = msg.split( url );
+		var genericMessageTemplate = '<%- msgBit %>';
+		var genericMessageCompiled = _.template( genericMessageTemplate );
+
+		var newMessage = 
+			genericMessageCompiled({msgBit: msgBits[0]}) 
+			+ '<a href="'+url+'" target="_blank">'+url+'</a>' 
+			+ genericMessageCompiled({msgBit: msgBits[1]});
+
+		if ( typeof args.v !== "undefined" ) {
+			url = 'https://www.youtube.com/embed/' + args.v;
+		}
+
+		var youtubeTemplate = '<iframe width="560" height="315" src="<%= url %>" frameborder="0" allowfullscreen></iframe>';
+		var youtubeCompiled = _.template( youtubeTemplate );
+
+		var youtubePayload = youtubeCompiled({ url: url });
+
+		return newMessage + "<br />" + youtubePayload;
+	}
+
+	return {
+		detectMedia: detectMedia
+	}
+})();

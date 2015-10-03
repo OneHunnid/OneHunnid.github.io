@@ -36,7 +36,7 @@ var Home = (function() {
 		form.parsley();
 
 		// Submit Note Form
-		$('#formSubmit').on('click', function(e) {
+		form.on('submit', function(e) {
 			e.preventDefault();
 			
 			form.parsley().validate();
@@ -86,10 +86,13 @@ var Home = (function() {
 
 			$('.js-home-left-col').html( hashPartialCompiled({
 				hash: searchVal,
-				val: dataAsArray
+				val: dataAsArray,
+				detectMedia: MediaDetector.detectMedia
 			}) );
 		});
 	}
+
+	
 
 
 	function initSearchSubmission() {
@@ -97,7 +100,7 @@ var Home = (function() {
 		var search = $('#search-notes');
 		search.parsley();
 
-		$('#searchSubmit').on('click', function(e) {
+		search.on('submit', function(e) {
 			e.preventDefault();
 
 			var searchVal = search.find('.search__input').val();

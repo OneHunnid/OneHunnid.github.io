@@ -68,7 +68,20 @@
 					<div class="searchResult__card">
 						<div class="searchResult__time"><%= moment( moment(val[ hashItem ].timestamp).add(24,'hours') ).from (moment(val[hashItem].timestamp) )%>
 						</div>
-						<div class="searchResults__text"><%- val[ hashItem ].message %></div>
+						
+
+						<% var isMedia = detectMedia( val[ hashItem ].message ); %>
+						<% if ( isMedia.isMediaFound ) { %>
+
+							<div class="searchResults__text">
+								<%= isMedia.payload %>
+							</div>
+
+						<% } else { %>
+
+							<div class="searchResults__text"><%- val[ hashItem ].message %></div>
+
+						<% } %>
 					</div>
 				<% } %>
 			</div>
@@ -160,6 +173,9 @@
 
 	<!-- PLUGINS -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.1.2/parsley.js"></script>
+
+	<!-- Media Detector -->
+		<script src="scripts/MediaDetector.js"></script>
 
 	<!-- VIEWS -->
 		<script src="scripts/views/home.js"></script>
