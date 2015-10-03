@@ -68,7 +68,7 @@
 					<div class="searchResult__card">
 						<div class="searchResult__time"><%= moment( moment(val[ hashItem ].timestamp).add(24,'hours') ).from (moment(val[hashItem].timestamp) )%>
 						</div>
-						<div class="searchResults__text"><%= val[ hashItem ].message %></div>
+						<div class="searchResults__text"><%- val[ hashItem ].message %></div>
 					</div>
 				<% } %>
 			</div>
