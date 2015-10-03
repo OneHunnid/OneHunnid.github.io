@@ -1,7 +1,6 @@
 var MediaDetector = (function(){
 
-	var supported = [ 'youtube', 'soundcloud', "imgur" ];
-
+	var supported = [ 'youtube', 'soundcloud', 'imgur' ];
 
 
 	function detectMedia( msg ) {
@@ -32,6 +31,9 @@ var MediaDetector = (function(){
 				break;
 			case "youtube":
 				payloadTypeFunction = _isYoutube;
+				break;
+			case "soundcloud":
+				payloadTypeFunction = _isSoundcloud;
 				break;
 		}
 
@@ -91,6 +93,26 @@ var MediaDetector = (function(){
 		var youtubePayload = youtubeCompiled({ url: url });
 
 		return newMessage + "<br />" + youtubePayload;
+	}
+
+	function _isSoundcloud( msg, url ) {
+
+		var msgBits = msg.split( url );
+		var genericMessageTemplate = '<%- msgBit %>';
+		var genericMessageCompiled = _.template( genericMessageTemplate );
+
+		var newMessage = 
+			genericMessageCompiled({msgBit: msgBits[0]}) 
+			+ '<a href="'+url+'" target="_blank">'+url+'</a>' 
+			+ genericMessageCompiled({msgBit: msgBits[1]});
+
+
+		var soundcloudTemplate = '<iframe width="100%" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=<%= url %>&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>';
+		var soundcloudCompiled = _.template( soundcloudTemplate );
+
+		var soundcloudPayload = soundcloudCompiled({ url: url });
+
+		return newMessage + "<p></p>" + soundcloudPayload;
 	}
 
 	return {
