@@ -162,6 +162,8 @@ iframe {
     right: 0;
     padding: 10px 15px 0 0;
     cursor: pointer;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .search__icon {
@@ -175,6 +177,11 @@ iframe {
 	ul { display:none; }
 }
 
+.searchHash {
+    position: absolute;
+    top: 9px;
+    left: 10px;
+}
 
 /* Intro Homepage Section
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -248,7 +255,22 @@ iframe {
 	    margin-bottom: .8rem;
 	}
 
+	.prepend-hash:before {
+		content: '#';
+		position: absolute;
+		top: 0;
+		left: 12px;
+	}
+
+	.form__hashparent {
+		position: relative;
+	}
+
 	.form__hashtag {}
+
+	.form__hashtag--spacer {
+		padding-left: 22px;
+	}
 
 	.form__button {}
 
