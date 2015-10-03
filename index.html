@@ -1,16 +1,19 @@
 <!doctype html>
 <html>
 <head>
-
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="author" content="">
 
 	<title>Camonote | Publicly enjoy anonymous conversations</title>
 
+	<link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
 	<link rel="stylesheet" type="text/css" href="styles/main.less.css">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
 </head>
 <body class="body">
-
-<!-- Site Wrapper	 -->
 	<div class="site-wrapper">
 
 	<!-- Header -->
@@ -21,9 +24,9 @@
 
 				<div class="nav flex-item">
 					<div class="search">
-						<form id="searchForm" class="search__form">
-							<input class="search__input" placeholder="search camonote">
-							<div class="search__button"><img class="search__icon" src="assets/icon_search.png"></div>
+						<form id="search-notes" class="search__form">
+							<input class="search__input" placeholder="search camonote" data-parsley-type="alphanum" data-parsley-length="[1, 50]" data-parsley-required-message="Field required." data-parsley-type-message="Alphanumeric characters only." required>
+							<div id="searchSubmit" class="search__button"><img class="search__icon" src="assets/icon_search.png"></div>
 						</form>
 					</div>
 					
@@ -34,38 +37,97 @@
 
 	<!-- Main Content -->
 		<main class="main">
-			<div class="container">	
-				<div class="row">
-
-				<!-- Main Info -->
-					<section class="six columns intro">
-						<h2 class="intro__title">Anonymously send notes that delete in 24 hours.</h2>
-						<p class="intro__desc">All notes are publicly available to read by searching for them with their hashtag. Enjoy anonymous conversations with friends, out in the open.</p>
-						<div class="intro__list">
-							<ul>
-								<li><span class="intro__icon"><img alt="Person Icon" src="assets/icon_person.png"></span>All Notes Are Anonymous</li>
-								<li><span class="intro__icon"><img alt="Shield Icon" src="assets/icon_shield.png"></span>SSL Encrypted Connection</li>
-								<li><span class="intro__icon"><img alt="Open Source Icon" src="assets/icon_opensource.png"></span>Open Sourced Code</li>
-							</ul>	
-						</div>
-					</section> <!-- End Main Info -->
-
-				<!-- Note Form -->
-					<section class="five columns form u-pull-right">
-						<div class="form__wrapper">
-							<form id="form">
-								<h3 class="form__title">Leave a Note</h3>
-								<textarea id="formTextareaMessage" class="form__message u-full-width" placeholder="Write your message here..."></textarea>
-								<input id="formInputHashtag" class="form__hashtag u-full-width" type="text" placeholder="#Hashtag"/>
-								<div id="formSubmit" class="button button--submit">Send Note</div>
-								<div class="form__convince">Still not convinced? <a href="learnmore.html" class="form__convinceLink">Learn more</a></div>
-							</form>
-						</div>
-					</section> <!-- End Note Form -->
-
-				</div>
-			</div>
+			<div class="container" id="main-content"></div>
 		</main> <!-- End Main Content -->
+
+	<!-- Partials Homepage -->
+		<script id="partial-main-info" type="underscore/template">
+			<div class="main-intro intro">
+				<h2 class="intro__title"><%= title %></h2>
+				<p class="intro__desc"><%= desc %></p>
+				<div class="intro__list">
+					<ul>
+					<% for (var i = 0; i < list.length; i++){%>
+						<li>
+							<span class="intro__icon">
+								<img alt="icon" src="<%= list[ i ].icon %>">
+							</span>
+							<%= list[ i ].label%>
+						</li>
+					<% } %>
+					</ul>
+				</div>
+		</script>
+
+		<script id="partial-hash-search" type="underscore/template">
+			<div class="searchPage">
+				<h2 class="search__title">Search Results for <span class="searchResults__hashtag">#<%= hash %></span></h2>
+			</div>
+			<div class="searchResults">
+				<% for ( var hashItem = 0; hashItem < val.length; ++hashItem ) { %>
+					<div class="searchResult__card">
+						<div class="searchResult__time"><%= moment( moment(val[ hashItem ].timestamp).add(24,'hours') ).from (moment(val[hashItem].timestamp) )%>
+						</div>
+						<div class="searchResults__text"><%= val[ hashItem ].message %></div>
+					</div>
+				<% } %>
+			</div>
+		</script>
+
+	<!-- Template Homepage -->
+		<script id="homepageTemplate" type="underscore/template">
+			<div class="row">
+
+			<!-- Main Info -->
+				<section class="seven columns js-home-left-col"></section>
+
+			<!-- Note Form -->
+				<section class="five columns form u-pull-right">
+					<div class="form__wrapper">
+						<form id="write-note">
+							<h3 class="form__title">Leave a Note</h3>
+							<textarea id="formTextareaMessage" class="form__message u-full-width" placeholder="Write your message here..." required data-parsley-length="[1, 140]" data-parsley-required-message="Message is required" data-parsley-length-message="Over the 140 character limit."></textarea>
+							<input id="formInputHashtag" class="form__hashtag u-full-width" type="text" placeholder="#Hashtag" required data-parsley-type="alphanum" data-parsley-length="[1, 50]" data-parsley-required-message="Field required." data-parsley-type-message="Alphanumeric characters only.">
+							<div id="formSubmit" class="button button--submit" type="submit">Send Note</div>
+							<div class="form__convince">Still not convinced? <a href="#learnMore" class="form__convinceLink">Learn more</a></div>
+						</form>
+					</div>
+				</section> <!-- End Note Form -->
+
+			</div>
+		</script> <!-- End of Homepage Template -->
+
+		<!-- Template Learn More-->
+		<script id="learnMoreTemplate" type="underscore/template">
+			<section class="learnMore">
+				<!-- Hero -->
+				<div class="hero">
+					<h2 class="hero__title"><%= title %></h2>
+					<div class="hero__desc"><%= desc %></div>
+				</div>
+				<div class="row learn">
+						<div class="six columns">
+							<div class="learn__title">Stay Safe & Anonymous</div>
+							<p>Camonote easily lets you hide your identity so that you can have public conversations privately. Simply create a note, categorize it with a hashtag and submit. You can search for notes using hashtags and join in on conversations.</p>
+						</div>
+						<div class="six columns">
+							<div class="learn__title">100% Transparent</div>
+							<p>We built our application on the foundation of trust and transparency. We do not track, collect, or sell any user data sessions. We only save the message and hashtag when notes are submitted. All notes are deleted after 24 hours. </p>
+						</div>
+					</div>
+
+					<div class="row learn">
+						<div class="six columns">
+							<div class="learn__title">Open Source</div>
+							<p>Camonote has nothing to hide, which is why we have released our codebase as open source.  Feel free to take a look and see how we&apos;ve built our application.</p>
+						</div>
+						<div class="six columns">
+							<div class="learn__title">SSL & Encryption</div>
+							<p>Camonote utilizes strong encryption to help keep you anonymous and our data safe. Our application is deployed on a secured Digital Oceans server with SSL and a secure Firebase server.</p>
+						</div>
+					</div>
+			</section>
+		</script>
 
 	<!-- Footer -->
 		<footer class="footer">
@@ -78,10 +140,34 @@
 			</div>
 		</footer><!-- End Footer -->
 
-	</div> <!-- End Site-Wrapper -->
+	</div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script type="text/javascript" src="scripts/site.js"></script>
-	<script type="text/javascript" src="scripts/parsley.js"></script>
+	<!-- FIREBASE -->
+		<script src='https://cdn.firebase.com/js/client/2.2.9/firebase.js'></script>
+
+	<!--  ROUTES  -->
+		<script src="scripts/director.min.js"></script>
+		<script src="scripts/routes.js"></script>
+
+	<!-- DOM -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+	<!-- UNDERSCORE -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+
+	<!-- UTILS -->
+		<script src="scripts/moment.js"></script>
+
+	<!-- PLUGINS -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.1.2/parsley.js"></script>
+
+	<!-- VIEWS -->
+		<script src="scripts/views/home.js"></script>
+		<script src="scripts/views/learnMore.js"></script>
+		<script src="scripts/views/search.js"></script>
+
+	<!-- ROUTER DIRECTOR -->
+		<script src="scripts/app.js"></script>
+
 </body>
 </html>
