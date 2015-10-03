@@ -913,6 +913,9 @@ input {
   border-radius: .4rem;
   box-shadow: none;
 }
+.searchResults__text iframe {
+  width: 100%;
+}
 .Flex {
   display: flex;
   display: -webkit-box;
@@ -1152,7 +1155,8 @@ input {
 }
 .search__title {
   font-size: 2.4rem;
-  text-align: center;
+  letter-spacing: 0.1px;
+  text-align: left;
   margin: 0;
 }
 .searchResults__hashtag {
