@@ -913,7 +913,7 @@ input {
   border-radius: .4rem;
   box-shadow: none;
 }
-.searchResults__text iframe {
+iframe {
   width: 100%;
 }
 .Flex {
