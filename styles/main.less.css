@@ -616,11 +616,10 @@ a:hover {
 }
 /* Buttons
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-.button,
+/*.button,
 button,
 input[type="submit"],
-input[type="reset"],
-input[type="button"] {
+input[type="reset"], {
   display: inline-block;
   height: 38px;
   padding: 0 30px;
@@ -637,8 +636,7 @@ input[type="button"] {
   border-radius: 4px;
   border: 1px solid #bbb;
   cursor: pointer;
-  box-sizing: border-box;
-}
+  box-sizing: border-box; }
 .button:hover,
 button:hover,
 input[type="submit"]:hover,
@@ -651,8 +649,7 @@ input[type="reset"]:focus,
 input[type="button"]:focus {
   color: #333;
   border-color: #888;
-  outline: 0;
-}
+  outline: 0; }
 .button.button-primary,
 button.button-primary,
 input[type="submit"].button-primary,
@@ -660,8 +657,7 @@ input[type="reset"].button-primary,
 input[type="button"].button-primary {
   color: #FFF;
   background-color: #33C3F0;
-  border-color: #33C3F0;
-}
+  border-color: #33C3F0; }
 .button.button-primary:hover,
 button.button-primary:hover,
 input[type="submit"].button-primary:hover,
@@ -674,8 +670,7 @@ input[type="reset"].button-primary:focus,
 input[type="button"].button-primary:focus {
   color: #FFF;
   background-color: #1EAEDB;
-  border-color: #1EAEDB;
-}
+  border-color: #1EAEDB; }*/
 /* Forms
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 input[type="email"],
@@ -999,6 +994,8 @@ iframe {
   right: 0;
   padding: 10px 15px 0 0;
   cursor: pointer;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
 }
 .search__icon {
   height: 13px;
@@ -1006,6 +1003,11 @@ iframe {
 }
 .search__form ul {
   display: none;
+}
+.searchHash {
+  position: absolute;
+  top: 9px;
+  left: 10px;
 }
 /* Intro Homepage Section
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -1055,6 +1057,18 @@ iframe {
 .form .form__message {
   min-height: 100px;
   margin-bottom: .8rem;
+}
+.form .prepend-hash:before {
+  content: '#';
+  position: absolute;
+  top: 0;
+  left: 12px;
+}
+.form .form__hashparent {
+  position: relative;
+}
+.form .form__hashtag--spacer {
+  padding-left: 22px;
 }
 .form .form__convince {
   text-align: center;
