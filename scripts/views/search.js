@@ -7,13 +7,15 @@ var Search = (function() {
 	},
 	template = $('#homepageTemplate').html(),
 	compiled = _.template( template ),
-	hash;
+	hash, isPlaying = 1;
 
 	// Partials
 	var hashPartial = $('#partial-hash-search').html(),
 		hashPartialCompiled = _.template( hashPartial ),
 		notFoundPartial = $('#partial-no-notes-found').html(),
-		notFoundCompiled = _.template( notFoundPartial );
+		notFoundCompiled = _.template( notFoundPartial ),
+		hashPartialHeader = $('#partial-hash-search-header').html(),
+		hashPartialHeaderCompiled = _.template( hashPartialHeader );
 
 	// Kickstart view
 	function initsearch( the_hash ) {
@@ -23,7 +25,11 @@ var Search = (function() {
 		// Load main content
 		$('#main-content').html(compiled( searchData ));
 
-		onVal( myFirebaseRef, hash, 100 );
+		$('.js-header-area').html(hashPartialHeaderCompiled({
+			hash: hash
+		}));
+
+		onVal( myFirebaseRef, hash, 30 );
 
 		// Bind events
 		initFormSubmission();
@@ -33,12 +39,10 @@ var Search = (function() {
 
 	function onVal( myFirebaseRef, searchVal, limVal ) {
 		myFirebaseRef.off();
-		myFirebaseRef.child('hashtags/'+searchVal).on('value', function( snapshot ) {
+		myFirebaseRef.child('hashtags/'+searchVal).once('value', function(snapshot) {
 			var vals = snapshot.val();
 
 			if ( vals === null ) {
-
-				console.log("hello");
 
 				$('.js-home-left-col').html( notFoundCompiled({
 					hash: searchVal
@@ -46,20 +50,13 @@ var Search = (function() {
 
 				return;
 			}
+		});
+		myFirebaseRef.child('hashtags/'+searchVal).limitToLast(limVal).on('child_added', function( snapshot ) {
+			var vals = snapshot.val();
 
-			var dataAsArray = 
-				Object.keys(vals)										// turns the keys of the snapshot into an array
-				.sort(function(a,b){									// sorts the keys 
-					return ( vals[a].timestamp <= vals[b].timestamp ) ? 1 : -1;
-				})
-				.reduce(function(arr, currentItem){						// now have array of keys sorted by timestamp
-					arr.push( vals[ currentItem ] );
-					return arr;											// populate another array for each object item
-				}, []);
-
-			$('.js-home-left-col').html( hashPartialCompiled({
+			$('.js-messages').prepend( hashPartialCompiled({
 				hash: searchVal,
-				val: dataAsArray,
+				val: [vals],
 				detectMedia: MediaDetector.detectMedia
 			}) );
 		});
@@ -69,7 +66,7 @@ var Search = (function() {
 		$('body').off('click', '.js-pause').on('click', '.js-pause', function( e ) {
 			e.preventDefault();
 
-			var isPlaying = parseInt( $( this ).attr('data-isplaying'), 10 );
+			isPlaying = parseInt( $( this ).attr('data-isplaying'), 10 );
 
 			if ( isPlaying  === 1 ) {
 				myFirebaseRef.child('hashtags/'+hash).off();
@@ -116,7 +113,7 @@ var Search = (function() {
 				$("#formTextareaMessage").val("");
 				$("#formInputHashtag").val("");
 
-				onVal( myFirebaseRef, formObj.hashtag, 100 );
+				onValOne( myFirebaseRef, formObj.hashtag, 1 );
 
 	        }
 	        // If invalid...
@@ -142,7 +139,8 @@ var Search = (function() {
 			search.parsley().validate();
 
 			if ( search.parsley().isValid() ) {
-				onVal( myFirebaseRef, searchVal, 100 );
+				// onVal( myFirebaseRef, searchVal, 100 );
+				Routes.setRoute('search/'+searchVal);
 
 				// Reset form field after	
 				$("#searchSubmit").val("");

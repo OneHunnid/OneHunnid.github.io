@@ -62,13 +62,18 @@
 				</div>
 		</script>
 
-		<script id="partial-hash-search" type="underscore/template">
+
+		<script id="partial-hash-search-header" type="underscore/template">
 			<div class="searchPage">
 				<h2 class="search__title">Search Results for <span class="searchResults__hashtag">#<%= hash %></span></h2>
 				<div>
 					<a class="js-pause" href="#" data-isplaying="1">Pause Feed</a>
 				</div>
 			</div>
+		</script>
+
+		<script id="partial-hash-search" type="underscore/template">
+
 			<div class="searchResults">
 				<% for ( var hashItem = 0; hashItem < val.length; ++hashItem ) { %>
 					<div class="searchResult__card">
@@ -97,7 +102,10 @@
 			<div class="row">
 
 			<!-- Main Info -->
-				<section class="seven columns js-home-left-col"></section>
+				<section class="seven columns js-home-left-col">
+					<div class="js-header-area"></div>
+					<div class="js-messages"></div>
+				</section>
 
 			<!-- Note Form -->
 				<section class="five columns form u-pull-right">
