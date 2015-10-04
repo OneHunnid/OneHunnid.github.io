@@ -422,7 +422,7 @@ iframe {
 .searchResults {
 
 	.searchResult__card {
-		background-color: #fff;
+		animation: pulse 0.5s ease-in-out;
 	  	padding: 20px;
 	  	border-radius: 4px;
 		box-shadow: 0px 1px 2px #bababa;
@@ -430,6 +430,12 @@ iframe {
 	    margin: 0 auto;
 	    min-height: 51px;
 	    margin-bottom: 20px;
+	    background-color: #fff;
+	}
+
+	@keyframes pulse {
+	  0%   { background-color: #0d8be4; }
+	  100% { background-color: #fff; }
 	}
 
 	.searchResult__time {
@@ -450,6 +456,18 @@ iframe {
     padding: 15px 0px;
     margin-bottom: 35px;
 	border-bottom: 1px solid @greyLight;
+}
+
+.current {
+    background-color: #fff;
+    width: 100%;
+    display: block;
+    margin-bottom: 15px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 4px;
+    text-decoration: none;
+    border: solid 1px rgba(13, 139, 228, 0.3);
 }
 
 
