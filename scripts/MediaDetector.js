@@ -1,6 +1,6 @@
 var MediaDetector = (function(){
 
-	var supported = [ 'youtube', 'soundcloud', 'imgur' ];
+	var supported = [ 'youtube', 'soundcloud', 'imgur', 'giphy' ];
 
 
 	function detectMedia( msg ) {
@@ -34,6 +34,12 @@ var MediaDetector = (function(){
 				break;
 			case "soundcloud":
 				payloadTypeFunction = _isSoundcloud;
+				break;
+			case "imgur":
+				payloadTypeFunction= _isImgur;
+				break;
+			case "giphy":
+				payloadTypeFunction = _isGiphy;
 				break;
 		}
 
@@ -113,6 +119,54 @@ var MediaDetector = (function(){
 		var soundcloudPayload = soundcloudCompiled({ url: url });
 
 		return newMessage + "<p></p>" + soundcloudPayload;
+	}
+
+	function _isImgur( msg, url ) {
+
+		var msgBits = msg.split( url );
+		var genericMessageTemplate = '<%- msgBit %>';
+		var genericMessageCompiled = _.template( genericMessageTemplate );
+
+		var newMessage = 
+			genericMessageCompiled({msgBit: msgBits[0]}) 
+			+ '<a href="'+url+'" target="_blank">'+url+'</a>' 
+			+ genericMessageCompiled({msgBit: msgBits[1]});
+
+		var urlBits = url.split('/');
+		var id = urlBits.pop();
+		// alert( id );
+
+
+		var imgurTemplate = '<blockquote class="imgur-embed-pub" lang="en" data-id="<%= id %>"></blockquote><script async src="http://s.imgur.com/min/embed.js" charset="utf-8"></script>';
+		var imgurCompiled = _.template( imgurTemplate );
+
+		var imgurPayload = imgurCompiled({ id: id });
+
+		return newMessage + "<p></p>" + imgurPayload;
+	}
+
+	function _isGiphy( msg, url ) {
+		var msgBits = msg.split( url );
+		var genericMessageTemplate = '<%- msgBit %>';
+		var genericMessageCompiled = _.template( genericMessageTemplate );
+
+		var newMessage = 
+			genericMessageCompiled({msgBit: msgBits[0]}) 
+			+ '<a href="'+url+'" target="_blank">'+url+'</a>' 
+			+ genericMessageCompiled({msgBit: msgBits[1]});
+
+		var urlBits = url.split('/');
+		var id = urlBits.pop();
+		var idBits = id.split('-');
+		id = idBits.pop();
+
+
+		var imgurTemplate = '<img style="width: 100%;" src="http://i.giphy.com/<%= id %>.gif">';
+		var imgurCompiled = _.template( imgurTemplate );
+
+		var imgurPayload = imgurCompiled({ id: id });
+
+		return newMessage + "<p></p>" + imgurPayload;
 	}
 
 	return {
