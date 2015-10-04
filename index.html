@@ -66,13 +66,10 @@
 
 		<script id="partial-hash-search-header" type="underscore/template">
 			<div class="searchBar">
-					<h2 class="search__title">Search Results for <span class="searchResults__hashtag">#<%= hash %></span></h2>
-					<div>
-						<a class="js-pause" href="#" data-isplaying="1">Pause Feed</a>
-					</div>
-					<div>
-						<a class="js-current" href="#"></a>
-					</div>
+				<h2 class="search__title">Search Results for <span class="searchResults__hashtag">#<%= hash %></span></h2>
+				<div>
+					<a class="js-pause" href="#" data-isplaying="1">Pause Feed</a>
+				</div>
 			</div>
 		</script>
 
@@ -108,7 +105,9 @@
 
 			<!-- Main Info -->
 				<section class="seven columns js-home-left-col">
-					<div class="js-header-area"></div>
+					<div class="js-header-area">
+						<a class="js-current" href="#"></a>
+					</div>
 					<div class="js-messages"></div>
 				</section>
 
