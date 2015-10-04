@@ -997,6 +997,9 @@ iframe {
   border: none;
   background-color: rgba(0, 0, 0, 0);
 }
+.search__button:focus {
+  outline: none;
+}
 .search__icon {
   height: 13px;
   opacity: 0.6;
@@ -1117,8 +1120,18 @@ iframe {
   text-align: center;
   list-style-type: none;
 }
+/*// .parsley-error {
+// 	border-color: #E44343;
+// }
+
+// .parsley-success {
+//     border: 1px solid #D1D1D1;
+// }*/
 /* Buttons
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+.button:focus {
+  outline: none;
+}
 .button--submit {
   background-color: #0d8be4;
   color: #ffffff;
@@ -1134,6 +1147,9 @@ iframe {
 .button--submit:hover {
   color: #fff;
   opacity: 0.9;
+}
+.button--submit:active {
+  outline: none;
 }
 /* Hero Section
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
