@@ -40,11 +40,7 @@
 
 	<!-- Main Content -->
 		<main class="main">
-			<div class="searchBar">
-				<div class="container">
-					<div id="searchBar"></div>
-				</div>
-			</div>
+			<div id="searchBar" class="container"></div>
 			<div class="container" id="main-content"></div>
 		</main> <!-- End Main Content -->
 
@@ -69,14 +65,14 @@
 
 
 		<script id="partial-hash-search-header" type="underscore/template">
-			<div class="searchPage">
-				<h2 class="search__title">Search Results for <span class="searchResults__hashtag">#<%= hash %></span></h2>
-				<div>
-					<a class="js-pause" href="#" data-isplaying="1">Pause Feed</a>
-				</div>
-				<div>
-					<a class="js-current" href="#"></a>
-				</div>
+			<div class="searchBar">
+					<h2 class="search__title">Search Results for <span class="searchResults__hashtag">#<%= hash %></span></h2>
+					<div>
+						<a class="js-pause" href="#" data-isplaying="1">Pause Feed</a>
+					</div>
+					<div>
+						<a class="js-current" href="#"></a>
+					</div>
 			</div>
 		</script>
 
@@ -105,6 +101,7 @@
 				<h2 class="search__title">No results for <span class="searchResults__hashtag">#<%= hash %></span></h2>
 			</div>
 		</script>
+
 	<!-- Template Homepage -->
 		<script id="homepageTemplate" type="underscore/template">
 			<div class="row">
