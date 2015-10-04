@@ -23,11 +23,14 @@ var Search = (function() {
 		hash = the_hash;
 
 		// Load main content
-		$('#main-content').html(compiled( searchData ));
+		$('#main-content')
+			.empty()
+			.append(hashPartialHeaderCompiled({
+				hash: hash
+			}))
+			.append(compiled( searchData ));
 
-		$('#searchBar').html(hashPartialHeaderCompiled({
-			hash: hash
-		}));
+		$('#searchBar').html();
 
 		onVal( myFirebaseRef, hash, 30 );
 
@@ -65,7 +68,7 @@ var Search = (function() {
 			}
 
 			else {
-				$('.js-current').text('Display ' + current + ' new notes');
+				$('.js-current').addClass('current').text('Display ' + current + ' new notes');
 			}
 	
 		});
@@ -115,7 +118,7 @@ var Search = (function() {
 		// Submit Note Form
 		form.on('submit', function(e) {
 			e.preventDefault();
-			
+
 			form.parsley().validate();
 
 			var formObj = {
@@ -134,7 +137,6 @@ var Search = (function() {
 				$("#formTextareaMessage").val("");
 				$("#formInputHashtag").val("");
 				++current;
-				onVal( myFirebaseRef, formObj.hashtag, 1 );
 
 	        }
 	        // If invalid...
