@@ -7,7 +7,7 @@ var Search = (function() {
 	},
 	template = $('#homepageTemplate').html(),
 	compiled = _.template( template ),
-	hash, isPlaying = 1;
+	hash, isPlaying = 1, current = 0;
 
 	// Partials
 	var hashPartial = $('#partial-hash-search').html(),
@@ -25,7 +25,7 @@ var Search = (function() {
 		// Load main content
 		$('#main-content').html(compiled( searchData ));
 
-		$('.js-header-area').html(hashPartialHeaderCompiled({
+		$('#searchBar').html(hashPartialHeaderCompiled({
 			hash: hash
 		}));
 
@@ -35,9 +35,11 @@ var Search = (function() {
 		initFormSubmission();
 		initSearchSubmission();
 		initPlayPauseFeed();
+		initDisplayQueue();
 	}
 
 	function onVal( myFirebaseRef, searchVal, limVal ) {
+		console.log( limVal )
 		myFirebaseRef.off();
 		myFirebaseRef.child('hashtags/'+searchVal).once('value', function(snapshot) {
 			var vals = snapshot.val();
@@ -54,11 +56,28 @@ var Search = (function() {
 		myFirebaseRef.child('hashtags/'+searchVal).limitToLast(limVal).on('child_added', function( snapshot ) {
 			var vals = snapshot.val();
 
-			$('.js-messages').prepend( hashPartialCompiled({
-				hash: searchVal,
-				val: [vals],
-				detectMedia: MediaDetector.detectMedia
-			}) );
+			if( isPlaying === 1 ){
+				$('.js-messages').prepend( hashPartialCompiled({
+					hash: searchVal,
+					val: [vals],
+					detectMedia: MediaDetector.detectMedia
+				}) );
+			}
+
+			else {
+				$('.js-current').text('Display ' + current + ' new notes');
+			}
+	
+		});
+	}
+
+	function initDisplayQueue() {
+		$('.js-current').on('click', function(e) {
+			e.preventDefault();
+			
+			isPlaying = 1;
+			onVal( myFirebaseRef, hash, current);
+			current = 0;
 		});
 	}
 
@@ -74,6 +93,7 @@ var Search = (function() {
 					.text('Play Feed')
 					.attr('data-isplaying', 0);
 				alert('feed is off')
+				isPlaying = 0;
 			}
 			else {
 				onVal( myFirebaseRef, hash, 100 );
@@ -81,6 +101,7 @@ var Search = (function() {
 					.text('Pause Feed')
 					.attr('data-isplaying', 1);
 				alert('feed is on');
+				isPlaying = 1;
 			}
 			
 		});
@@ -112,8 +133,8 @@ var Search = (function() {
 				// Reset form fields after	
 				$("#formTextareaMessage").val("");
 				$("#formInputHashtag").val("");
-
-				onValOne( myFirebaseRef, formObj.hashtag, 1 );
+				++current;
+				onVal( myFirebaseRef, formObj.hashtag, 1 );
 
 	        }
 	        // If invalid...
