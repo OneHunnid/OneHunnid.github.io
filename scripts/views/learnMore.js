@@ -12,6 +12,36 @@ var LearnMore = (function() {
 	
 	// load main-content
 		$('#main-content').html(compiled(learnMoreData));
+		initSearchSubmission();
+	}
+
+	function initSearchSubmission() {
+
+		var search = $('#search-notes');
+		search.parsley();
+
+		search.on('submit', function(e) {
+			e.preventDefault();
+
+			var searchVal = search.find('.search__input').val();
+
+			search.parsley().validate();
+
+			if ( search.parsley().isValid() ) {
+				// onVal( myFirebaseRef, searchVal, 100 );
+				Routes.setRoute('search/'+searchVal);
+
+				// Reset form field after	
+				$("#searchSubmit").val("");
+			}
+			
+			// If invalid...
+			else {
+				
+			}
+
+		});
+
 	}
 	return {
 		init: initLearnMore
