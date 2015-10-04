@@ -27,7 +27,9 @@ var Home = (function() {
 	var infoPartial = $('#partial-main-info').html(),
 		infoPartialCompiled = _.template( infoPartial ),
 		hashPartial = $('#partial-hash-search').html(),
-		hashPartialCompiled = _.template( hashPartial );
+		hashPartialCompiled = _.template( hashPartial ),
+		notFoundPartial = $('#partial-no-notes-found').html(),
+		notFoundCompiled = _.template( notFoundPartial );
 
 	// DOM Handlers
 	function initFormSubmission() {
@@ -73,6 +75,17 @@ var Home = (function() {
 		myFirebaseRef.off();
 		myFirebaseRef.child('hashtags/'+searchVal).on('value', function( snapshot ) {
 			var vals = snapshot.val();
+
+			if ( vals === null ) {
+
+				console.log("hello");
+
+				$('.js-home-left-col').html( notFoundCompiled({
+					hash: searchVal
+				}) );
+
+				return;
+			}
 
 			var dataAsArray = 
 				Object.keys(vals)										// turns the keys of the snapshot into an array

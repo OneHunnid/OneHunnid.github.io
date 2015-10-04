@@ -27,7 +27,7 @@
 						<form id="search-notes" class="search__form">
 							<div class="form_hashparent">
 								<span class="searchHash">#</span>
-								<input class="search__input" placeholder="search camonote" data-parsley-type="alphanum" data-parsley-length="[1, 50]" data-parsley-required-message="Field required." data-parsley-type-message="Alphanumeric characters only." required>
+								<input class="search__input" placeholder="search camonote" data-parsley-type="alphanum" data-parsley-length="[1, 35]" data-parsley-required-message="Field required." data-parsley-type-message="Alphanumeric characters only." required>
 								<button id="searchSubmit" class="search__button"><img class="search__icon" src="assets/icon_search.png"></button>
 							</div>
 						</form>
@@ -84,6 +84,11 @@
 			</div>
 		</script>
 
+		<script id="partial-no-notes-found" type="underscore/template">
+			<div class="searchPage">
+				<h2 class="search__title">Oh snap! No results for <span class="searchResults__hashtag">#<%= hash %></span></h2>
+			</div>
+		</script>
 	<!-- Template Homepage -->
 		<script id="homepageTemplate" type="underscore/template">
 			<div class="row">
@@ -99,7 +104,7 @@
 							<textarea id="formTextareaMessage" class="form__message u-full-width" placeholder="Write your message here..." required data-parsley-length="[1, 140]" data-parsley-required-message="Message is required" data-parsley-length-message="Over the 140 character limit."></textarea>
 							<span class="form__hashparent">
 								<span class="prepend-hash"></span>
-								<input id="formInputHashtag" class="form__hashtag u-full-width form__hashtag--spacer" type="text" placeholder="Hashtag" required data-parsley-type="alphanum" data-parsley-length="[1, 50]" data-parsley-required-message="Field required." data-parsley-type-message="Alphanumeric characters only.">
+								<input id="formInputHashtag" class="form__hashtag u-full-width form__hashtag--spacer" type="text" placeholder="Hashtag" required data-parsley-type="alphanum" data-parsley-length="[1, 35]" data-parsley-required-message="Field required." data-parsley-type-message="Alphanumeric characters only.">
 							</span>
 							<input type="submit" id="formSubmit" class="button button--submit" value="Send Note">
 							<div class="form__convince">Still not convinced? <a href="#learnMore" class="form__convinceLink">Learn more</a></div>
