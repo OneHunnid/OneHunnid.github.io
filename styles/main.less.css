@@ -929,6 +929,9 @@ iframe {
   min-height: 100%;
   position: relative;
 }
+.main {
+  padding: 5.5rem 0;
+}
 /* Header
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .header {
@@ -1173,13 +1176,6 @@ iframe {
 }
 /* Search Page
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-.searchPage {
-  /*	background-color: #fff;
-    padding: 20px;
-    border-radius: 4px;
-    box-shadow: 0px 1px 2px #bababa;
-    margin-bottom: 20px;*/
-}
 .search__title {
   font-size: 2.4rem;
   letter-spacing: 0.1px;
@@ -1210,7 +1206,6 @@ iframe {
   color: #000;
 }
 .searchBar {
-  background-color: #FFF;
   padding: 15px 0px;
   margin-bottom: 35px;
   border-bottom: 1px solid #e3e3e3;
