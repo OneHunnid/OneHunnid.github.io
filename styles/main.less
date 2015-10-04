@@ -164,6 +164,8 @@ iframe {
     cursor: pointer;
     border: none;
     background-color: rgba(0, 0, 0, 0);
+
+    &:focus { outline: none;};
 }
 
 .search__icon {
@@ -332,17 +334,19 @@ iframe {
 	list-style-type: none;
 }
 
-// .parsley-error {
+/*// .parsley-error {
 // 	border-color: #E44343;
 // }
 
 // .parsley-success {
 //     border: 1px solid #D1D1D1;
-// }
+// }*/
 
 
 /* Buttons
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.button:focus {outline:none;}
 
 .button--submit {
 	background-color: @blue;
@@ -360,6 +364,8 @@ iframe {
 	    color: #fff;
 	    opacity: 0.9;
     }
+
+    &:active {outline: none;};
 }
 
 
