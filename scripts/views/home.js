@@ -25,11 +25,7 @@ var Home = (function() {
 
 	// Partials
 	var infoPartial = $('#partial-main-info').html(),
-		infoPartialCompiled = _.template( infoPartial ),
-		hashPartial = $('#partial-hash-search').html(),
-		hashPartialCompiled = _.template( hashPartial ),
-		notFoundPartial = $('#partial-no-notes-found').html(),
-		notFoundCompiled = _.template( notFoundPartial );
+		infoPartialCompiled = _.template( infoPartial );
 
 	// DOM Handlers
 	function initFormSubmission() {
@@ -59,7 +55,7 @@ var Home = (function() {
 				$("#formTextareaMessage").val("");
 				$("#formInputHashtag").val("");
 
-				onVal( myFirebaseRef, formObj.hashtag, 100 );
+				Routes.setRoute('search/'+formObj.hashtag);
 
 	        }
 	        // If invalid...
@@ -70,42 +66,6 @@ var Home = (function() {
 		});
 
 	}
-
-	function onVal( myFirebaseRef, searchVal, limVal ) {
-		myFirebaseRef.off();
-		myFirebaseRef.child('hashtags/'+searchVal).on('value', function( snapshot ) {
-			var vals = snapshot.val();
-
-			if ( vals === null ) {
-
-				console.log("hello");
-
-				$('.js-home-left-col').html( notFoundCompiled({
-					hash: searchVal
-				}) );
-
-				return;
-			}
-
-			var dataAsArray = 
-				Object.keys(vals)										// turns the keys of the snapshot into an array
-				.sort(function(a,b){									// sorts the keys 
-					return ( vals[a].timestamp <= vals[b].timestamp ) ? 1 : -1;
-				})
-				.reduce(function(arr, currentItem){						// now have array of keys sorted by timestamp
-					arr.push( vals[ currentItem ] );
-					return arr;											// populate another array for each object item
-				}, []);
-
-			$('.js-home-left-col').html( hashPartialCompiled({
-				hash: searchVal,
-				val: dataAsArray,
-				detectMedia: MediaDetector.detectMedia
-			}) );
-		});
-	}
-
-	
 
 
 	function initSearchSubmission() {
@@ -121,10 +81,11 @@ var Home = (function() {
 			search.parsley().validate();
 
 			if ( search.parsley().isValid() ) {
-				onVal( myFirebaseRef, searchVal, 100 );
+				Routes.setRoute('/search/'+searchVal);
 
 				// Reset form field after	
 				$("#searchSubmit").val("");
+				return;
 			}
 			
 			// If invalid...
@@ -135,6 +96,7 @@ var Home = (function() {
 		});
 
 	}
+
 
 	// KICKSTART VIEW
 	function initHome() {

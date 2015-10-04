@@ -10,13 +10,13 @@
 		LearnMore.init();
 	};
 
-	Views.search = function search() {
-		Search.init();
+	Views.search = function search( hash ) {
+		Search.init( hash );
 	};
 
 	Routes.register('home', Views.home );
 	Routes.register('learnMore', Views.learnMore );
-	Routes.register('search', Views.search );
+	Routes.register('search/:hash', Views.search );
 
 	Routes.init('home');
 	

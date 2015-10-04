@@ -65,6 +65,9 @@
 		<script id="partial-hash-search" type="underscore/template">
 			<div class="searchPage">
 				<h2 class="search__title">Search Results for <span class="searchResults__hashtag">#<%= hash %></span></h2>
+				<div>
+					<a class="js-pause" href="#" data-isplaying="1">Pause Feed</a>
+				</div>
 			</div>
 			<div class="searchResults">
 				<% for ( var hashItem = 0; hashItem < val.length; ++hashItem ) { %>

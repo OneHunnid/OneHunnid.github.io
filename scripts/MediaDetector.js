@@ -1,6 +1,6 @@
 var MediaDetector = (function(){
 
-	var supported = [ 'youtube', 'soundcloud', 'imgur', 'giphy' ];
+	var supported = [ 'youtube', 'soundcloud', 'imgur', 'giphy', 'vine', 'vimeo' ];
 
 
 	function detectMedia( msg ) {
@@ -40,6 +40,12 @@ var MediaDetector = (function(){
 				break;
 			case "giphy":
 				payloadTypeFunction = _isGiphy;
+				break;
+			case "vine":
+				payloadTypeFunction = _isVine;
+				break;
+			case "vimeo":
+				payloadTypeFunction = _isVimeo;
 				break;
 		}
 
@@ -168,6 +174,56 @@ var MediaDetector = (function(){
 
 		return newMessage + "<p></p>" + imgurPayload;
 	}
+
+	function _isVine( msg, url ) {
+
+		var msgBits = msg.split( url );
+		var genericMessageTemplate = '<%- msgBit %>';
+		var genericMessageCompiled = _.template( genericMessageTemplate );
+
+		var newMessage = 
+			genericMessageCompiled({msgBit: msgBits[0]}) 
+			+ '<a href="'+url+'" target="_blank">'+url+'</a>' 
+			+ genericMessageCompiled({msgBit: msgBits[1]});
+
+		var urlBits = url.split('/');
+		var id = urlBits.pop();
+
+
+		var imgurTemplate = '<iframe src="https://vine.co/v/<%= id %>/embed/simple" width="600" height="600" frameborder="0"></iframe><script src="https://platform.vine.co/static/scripts/embed.js"></script>';
+		var imgurCompiled = _.template( imgurTemplate );
+
+		var imgurPayload = imgurCompiled({ id: id });
+
+		return newMessage + "<p></p>" + imgurPayload;
+	}
+
+	function _isVimeo( msg, url ) {
+
+		var msgBits = msg.split( url );
+		var genericMessageTemplate = '<%- msgBit %>';
+		var genericMessageCompiled = _.template( genericMessageTemplate );
+
+		var newMessage = 
+			genericMessageCompiled({msgBit: msgBits[0]}) 
+			+ '<a href="'+url+'" target="_blank">'+url+'</a>' 
+			+ genericMessageCompiled({msgBit: msgBits[1]});
+
+		var urlBits = url.split('/');
+		var id = urlBits.pop();
+
+
+		var imgurTemplate = '<iframe src="https://player.vimeo.com/video/<%= id %>" width="500" height="216" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>';
+		var imgurCompiled = _.template( imgurTemplate );
+
+		var imgurPayload = imgurCompiled({ id: id });
+
+		return newMessage + "<p></p>" + imgurPayload;
+	}
+
+
+
+
 
 	return {
 		detectMedia: detectMedia
