@@ -58,17 +58,14 @@ var Search = (function() {
 		});
 		myFirebaseRef.child('hashtags/'+searchVal).limitToLast(limVal).on('child_added', function( snapshot ) {
 			var vals = snapshot.val();
-
+console.log('IN HERE', isPlaying )
 			if( isPlaying === 1 ){
+				$('.js-current.current').removeClass('current').text('');
 				$('.js-messages').prepend( hashPartialCompiled({
 					hash: searchVal,
 					val: [vals],
 					detectMedia: MediaDetector.detectMedia
 				}) );
-			}
-
-			else {
-				$('.js-current').addClass('current').text('Display ' + current + ' new notes');
 			}
 	
 		});
@@ -81,6 +78,9 @@ var Search = (function() {
 			isPlaying = 1;
 			onVal( myFirebaseRef, hash, current);
 			current = 0;
+			$('.js-pause')
+				.text('Pause Feed')
+				.attr('data-isplaying', 1);
 		});
 	}
 
@@ -89,6 +89,7 @@ var Search = (function() {
 			e.preventDefault();
 
 			isPlaying = parseInt( $( this ).attr('data-isplaying'), 10 );
+			current = 0;
 
 			if ( isPlaying  === 1 ) {
 				myFirebaseRef.child('hashtags/'+hash).off();
@@ -105,7 +106,9 @@ var Search = (function() {
 					.attr('data-isplaying', 1);
 				alert('feed is on');
 				isPlaying = 1;
+				$('.js-current.current').removeClass('current').text('');
 			}
+			console.log( isPlaying );
 			
 		});
 	}
@@ -121,11 +124,16 @@ var Search = (function() {
 
 			form.parsley().validate();
 
+			var date = new Date();
+			date.setSeconds(0);
+			console.log( date, date.getTime(), isPlaying )
+
 			var formObj = {
 				message: $('#formTextareaMessage').val(),
 				hashtag: $('#formInputHashtag').val(),
-				timestamp: Firebase.ServerValue.TIMESTAMP
+				timestamp: date.getTime()
 			};
+
 
 			if ( form.parsley().isValid() ) {
 
@@ -136,7 +144,12 @@ var Search = (function() {
 				// Reset form fields after	
 				$("#formTextareaMessage").val("");
 				$("#formInputHashtag").val("");
-				++current;
+				
+				if ( isPlaying === 0 ) {
+					++current;
+					$('.js-current').addClass('current').text('Display ' + current + ' new notes');	
+				}
+				
 
 	        }
 	        // If invalid...
