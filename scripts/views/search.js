@@ -58,7 +58,7 @@ var Search = (function() {
 		});
 		myFirebaseRef.child('hashtags/'+searchVal).limitToLast(limVal).on('child_added', function( snapshot ) {
 			var vals = snapshot.val();
-console.log('IN HERE', isPlaying )
+
 			if( isPlaying === 1 ){
 				$('.js-current.current').removeClass('current').text('');
 				$('.js-messages').prepend( hashPartialCompiled({
@@ -96,7 +96,7 @@ console.log('IN HERE', isPlaying )
 				$( this )
 					.text('Play Feed')
 					.attr('data-isplaying', 0);
-				alert('feed is off')
+			
 				isPlaying = 0;
 			}
 			else {
@@ -104,11 +104,10 @@ console.log('IN HERE', isPlaying )
 				$( this )
 					.text('Pause Feed')
 					.attr('data-isplaying', 1);
-				alert('feed is on');
+			
 				isPlaying = 1;
 				$('.js-current.current').removeClass('current').text('');
 			}
-			console.log( isPlaying );
 			
 		});
 	}
@@ -126,7 +125,6 @@ console.log('IN HERE', isPlaying )
 
 			var date = new Date();
 			date.setSeconds(0);
-			console.log( date, date.getTime(), isPlaying )
 
 			var formObj = {
 				message: $('#formTextareaMessage').val(),
