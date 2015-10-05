@@ -109,9 +109,29 @@ var Home = (function() {
 		// Bind events
 		initFormSubmission();
 		initSearchSubmission();
+
+		initTimeStampStuff();
 	}
 	return {
 		init: initHome
 	};
+
+
+	function initTimeStampStuff() {
+		myFirebaseRef.on('value', function(snap) {
+			var val = snap.val();
+			console.log( val );
+
+			var timestamp = new Date.getTime(); // NOW
+
+			// go through .allNotes
+			// remove ALL objects where timestamps < timestamp
+
+			// go through all .hashtags
+			// 	for each hastag, go through ALL children
+			//		remove ALL objects where timestamps < timestamp
+			//		
+		})
+	}
 
 })();
