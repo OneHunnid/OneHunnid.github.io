@@ -67,6 +67,10 @@ var Search = (function() {
 					detectMedia: MediaDetector.detectMedia
 				}) );
 			}
+			else {
+				++current;
+				$('.js-current').addClass('current').text('Display ' + current + ' new notes');
+			}
 	
 		});
 	}
@@ -92,7 +96,7 @@ var Search = (function() {
 			current = 0;
 
 			if ( isPlaying  === 1 ) {
-				myFirebaseRef.child('hashtags/'+hash).off();
+				// myFirebaseRef.child('hashtags/'+hash).off();
 				$( this )
 					.text('Play Feed')
 					.attr('data-isplaying', 0);
@@ -100,7 +104,7 @@ var Search = (function() {
 				isPlaying = 0;
 			}
 			else {
-				onVal( myFirebaseRef, hash, 100 );
+				// onVal( myFirebaseRef, hash, 100 );
 				$( this )
 					.text('Pause Feed')
 					.attr('data-isplaying', 1);
@@ -129,7 +133,7 @@ var Search = (function() {
 			var formObj = {
 				message: $('#formTextareaMessage').val(),
 				hashtag: $('#formInputHashtag').val(),
-				timestamp: date.getTime() - 24 * 60 * 60 * 1000
+				timestamp: date.getTime() //- 24 * 60 * 60 * 1000
 			};
 
 
