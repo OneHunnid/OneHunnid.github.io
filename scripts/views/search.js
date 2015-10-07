@@ -129,7 +129,7 @@ var Search = (function() {
 			var formObj = {
 				message: $('#formTextareaMessage').val(),
 				hashtag: $('#formInputHashtag').val(),
-				timestamp: date.getTime() //- 24 * 60 * 60 * 1000
+				timestamp: date.getTime() - 24 * 60 * 60 * 1000
 			};
 
 
