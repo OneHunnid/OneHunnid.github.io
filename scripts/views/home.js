@@ -112,20 +112,9 @@ var Home = (function() {
 		// Bind events
 		initFormSubmission();
 		initSearchSubmission();
-
-		initTimeStampStuff();
 	}
 	return {
 		init: initHome
 	};
-
-		// myFirebaseRef.child('hashtags/japan').orderByChild('timestamp').endAt(now).on('child_added', function( snapshot ) {
-		// 	console.log(snapshot.key() + " was " + snapshot.val().timestamp + " meters tall");
-		// 	snapshot.ref().remove(function() {
-		// 		console.log(arguments)
-		// 	});
-		// });
-	}
-	// initTimeStampStuff();
 
 })();
