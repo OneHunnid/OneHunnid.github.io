@@ -39,16 +39,19 @@ var Home = (function() {
 			
 			form.parsley().validate();
 
+			var date = new Date();
+			date.setSeconds(0);
+
 			var formObj = {
 				message: $('#formTextareaMessage').val(),
 				hashtag: $('#formInputHashtag').val(),
-				timestamp: Firebase.ServerValue.TIMESTAMP
+				timestamp: date.getTime() - 24 * 60 * 60 * 1000
 			};
 
 			if ( form.parsley().isValid() ) {
 
 				// Submit notes to database
-	            myFirebaseRef.child('allNotes').push({"message": formObj.message , "hashtag": formObj.hashtag, "timestamp": formObj.timestamp});
+	            myFirebaseRef.child('allHashes').child( formObj.hashtag ).set( 1 );
 	            myFirebaseRef.child('hashtags/' + formObj.hashtag).push({"message": formObj.message , "hashtag": formObj.hashtag, "timestamp": formObj.timestamp});
 
 				// Reset form fields after	
@@ -116,22 +119,13 @@ var Home = (function() {
 		init: initHome
 	};
 
-
-	function initTimeStampStuff() {
-		myFirebaseRef.on('value', function(snap) {
-			var val = snap.val();
-			console.log( val );
-
-			var timestamp = new Date.getTime(); // NOW
-
-			// go through .allNotes
-			// remove ALL objects where timestamps < timestamp
-
-			// go through all .hashtags
-			// 	for each hastag, go through ALL children
-			//		remove ALL objects where timestamps < timestamp
-			//		
-		})
+		// myFirebaseRef.child('hashtags/japan').orderByChild('timestamp').endAt(now).on('child_added', function( snapshot ) {
+		// 	console.log(snapshot.key() + " was " + snapshot.val().timestamp + " meters tall");
+		// 	snapshot.ref().remove(function() {
+		// 		console.log(arguments)
+		// 	});
+		// });
 	}
+	// initTimeStampStuff();
 
 })();

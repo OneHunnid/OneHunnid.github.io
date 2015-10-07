@@ -129,14 +129,14 @@ var Search = (function() {
 			var formObj = {
 				message: $('#formTextareaMessage').val(),
 				hashtag: $('#formInputHashtag').val(),
-				timestamp: date.getTime()
+				timestamp: date.getTime() //- 24 * 60 * 60 * 1000
 			};
 
 
 			if ( form.parsley().isValid() ) {
 
 				// Submit notes to database
-	            myFirebaseRef.child('allNotes').push({"message": formObj.message , "hashtag": formObj.hashtag, "timestamp": formObj.timestamp});
+	            myFirebaseRef.child('allHashes').child( formObj.hashtag ).set( 1 );
 	            myFirebaseRef.child('hashtags/' + formObj.hashtag).push({"message": formObj.message , "hashtag": formObj.hashtag, "timestamp": formObj.timestamp});
 
 				// Reset form fields after	
